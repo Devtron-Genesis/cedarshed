@@ -1,0 +1,11 @@
+name = Rename Locked Fields
+description = Allows locked fields's title to get altered from a custom UI.
+package = Custom
+core = 7.x
+configure = admin/config/development/rflocked
+; Information added by Drupal.org packaging script on 2015-11-20
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "rflocked"
+datestamp = "1448020445"
+

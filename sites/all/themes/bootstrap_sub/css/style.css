@@ -755,10 +755,71 @@ footer .design {
 .front .sharethis-buttons {
     display: none;
 }
+.
 .pno:hover{
 	color: #2f3272;
 }
+/*Related Product Section*/
+.view-id-related_products .views-row {
+    border: 1px solid #414486;
+    background: #fff;
+    padding: 10px 20px;
+}
+.view-id-related_products .views-field-title{
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    height: 60px;
+}
 
+.view-id-related_products .views-field-field-images{
+    display: inline-block;
+    margin-bottom: 0px;
+    height: 220px;
+    width: 100%;
+    text-align: center;
+}
+.view-id-related_products .views-field-body p {
+    font-size: 14px;
+}
+
+.view-id-related_products .views-field-body{
+    min-height: 160px;
+}
+.view-id-related_products .views-field-view-node {
+    font-size: 12px;
+}
+.view-id-related_products .views-field-field-images a{
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 0px;
+    height: 210px;
+}
+.view-id-related_products .views-field-field-images a img{
+    margin:0 auto;
+}
+.field-name-commerce-price table {
+    width: 100%;
+    color: #fff;
+    border: none;
+}
+.field-name-commerce-price .table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: transparent;
+}
+.field-name-commerce-price tbody tr {
+    font-size: 24px;
+}
+.field-name-commerce-price tbody tr td {
+    font-size: 24px!important;
+    text-align: left!important;
+    color: #fff!important;
+    border: none!important;
+    padding-left: 0px;
+}
+.field-name-commerce-price .table-hover > tbody > tr:hover {
+    background: transparent;
+}
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #233e84 !important;
@@ -825,7 +886,7 @@ ul{
 }
 
 .tabcontent .field-name-commerce-price{
-	font-size: 34px;
+	font-size: 24px;
 	letter-spacing: 1px;
 }
 
