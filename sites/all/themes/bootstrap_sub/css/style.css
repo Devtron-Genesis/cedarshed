@@ -760,6 +760,9 @@ footer .design {
 	color: #2f3272;
 }
 /*Related Product Section*/
+.view-id-related_products .views-field-view-node a {
+    font-size: 12px;
+}
 .view-id-related_products .views-row {
     border: 1px solid #414486;
     background: #fff;

@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * Implements hook_init.
+ * Standard task run on page request.
+ */
+function cedarshed_custom_module_init() {
+}
+
+/**
+ * When saving a discount line item round the value to get correct order total.
+ * Implements hook_commerce_line_item_presave($line_item);
+ */
+function cedarshed_custom_module_commerce_line_item_presave($line_item) {
+  // if ($line_item->type == 'product') {
+  //   foreach ($line_item->commerce_total[LANGUAGE_NONE][0]['data']['components'] as $key => $component) {
+  //     if ($component['name'] == 'discount' && is_float($component['price']['amount'])) {
+  //       $line_item->commerce_total[LANGUAGE_NONE][0]['data']['components'][$key]['price']['amount'] = round($component['price']['amount']);
+  //     }
+  //   }
+  // }
+}
+
+/**
+ * Implements hook_form_alter.
+ * Alter forms for specific purposes.
+ */
+function cedarshed_custom_module_form_alter(&$form, &$form_state, $form_id) {
+
+}
+
+/**
+ * Implements hook_form_alter.
+ * Alter forms for specific purposes.
+ */
+function cedarshed_custom_module_form_simple_subscription_form_alter(&$form, &$form_state, $form_id) {
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ */
+function cedarshed_custom_module_form_i18n_string_locale_translate_edit_form_alter(&$form, &$form_state, $form_id) {
+  // Let's check at least for a user's role first.
+  global $user;
+  if (in_array('administrator', $user->roles)) {
+    // Simply unset the validation. Done.
+    // unset($form['#validate']);
+  }
+}
+
+/**
+ * Implements hook_url_outbound_alter()
+ */
+function cedarshed_custom_module_url_outbound_alter(&$path, &$options, $original_path){
+  // if(strpos($path, '#') !== false) {
+  //   $pathExploded = explode('#', $path);
+  //   list($path, $options['fragment']) = $pathExploded;
+  // }
+}
