@@ -15,7 +15,7 @@ Installation and configuration
 ---------------------------------
 Typical issues
 Receiving emails twice?
-Check, if you have set your email address as cc recepient in the module settings.
+Check, if you have set your email address as cc recipient in the module settings.
 Check your rules configration by enabling Show debug information => ALWAYS in Rules settings (admin/config/workflow/rules/settings)
 
 No invoice emails sent?

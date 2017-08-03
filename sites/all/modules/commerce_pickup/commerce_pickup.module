@@ -15,33 +15,20 @@
 function commerce_pickup_menu() {
 
   // Commerce pickup settings page.
-  $items['admin/commerce/config/pickup'] = array(
-    'title' => 'Pickup Settings',
+  $items['admin/commerce/config/shipping/methods/pickup/edit'] = array(
+    'title' => 'Edit',
     'description' => 'Commerce Pickup shipping method settings.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('commerce_pickup_settings_form'),
-    'access arguments' => array('administer store configuration'),
+    'access arguments' => array('administer shipping'),
     'file' => 'commerce_pickup.admin.inc',
-  );
-
-  // Pickup tab in admin order interface.
-  $items['admin/commerce/orders/%commerce_order/pickup'] = array(
-    'title' => 'Pickup',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('commerce_pickup_order_pickup_form', 3),
-    'access callback' => 'commerce_pickup_order_access',
-    'access arguments' => array('administer store configuration', 3),
     'type' => MENU_LOCAL_TASK,
-    'weight' => 15,
-    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'context' => MENU_CONTEXT_INLINE,
+    'weight' => 0,
   );
 
   return $items;
 }
-
-/****************************************************************
- * Commerce hooks
- * **************************************************************/
 
 /**
  * Implements hook_entity_insert().
@@ -121,17 +108,72 @@ function commerce_pickup_commerce_shipping_method_info() {
 function commerce_pickup_commerce_shipping_service_info() {
   $shipping_services = array();
 
-  $shipping_services['pickup'] = array(
-    'title' => t('Pickup'),
-    'description' => t('A list of active pickup locations to choose from.'),
-    'display_title' => t(variable_get('commerce_pickup_service_display_title', 'Pickup')),
-    'shipping_method' => 'pickup',
-    'price_component' => 'pickup',
-    'callbacks' => array(
-      'rate' => 'commerce_pickup_service_rate',
-      'details_form' => 'commerce_pickup_service_details_form',
-    ),
-  );
+  // Load the entity/bundle type setting.
+  $entity_bundle = variable_get('commerce_pickup_location_entity', NULL);
+  if ($entity_bundle) {
+
+    // Split the entity/bundle into two separate variables.
+    $split = explode('__', $entity_bundle);
+    if (count($split == 2)) {
+      $entity_type = $split[0];
+      $bundle = $split[1];
+    }
+  }
+
+  // If an entity type and bundle are not available, bail.
+  if (empty($entity_type) || empty($bundle)) {
+    return $shipping_services;
+  }
+
+  // Start a new Entity Field Query.
+  $query = new EntityFieldQuery();
+
+  // Set the entity type and bundle.
+  $query->entityCondition('entity_type', $entity_type);
+  $query->entityCondition('bundle', $bundle);
+
+  // Execute the query.
+  $result = $query->execute();
+
+  // Iterate through the results to build a list of shipping services.
+  if (!empty($result)) {
+    foreach ($result as $type => $entities) {
+
+      // If there are entities...
+      if (!empty($entities)) {
+
+        // Load entity info.
+        $entity_info = entity_get_info($type);
+
+        // Iterate through the entities.
+        foreach ($entities as $id => $data) {
+
+          // Load the entities.
+          $loaded_entities = entity_load($type, array($id));
+
+          // Alias the first (and only) entity.
+          $entity = reset($loaded_entities);
+
+          // Load the entity label.
+          $label = entity_label($type, $entity);
+
+          // Load the display title of the pickup services.
+          $pickup_title = variable_get('commerce_pickup_service_display_title', 'Pickup');
+
+          // Define the shipping service for this location.
+          $shipping_services['commerce_pickup__' . $type . '__' . $id] = array(
+            'title' => t('@pickup at @location', array('@pickup' => $pickup_title, '@location' => $label)),
+            'description' => t('Customer will pick up at @location', array('@location' => $label)),
+            'display_title' => t('@pickup at @location', array('@pickup' => $pickup_title, '@location' => $label)),
+            'shipping_method' => 'pickup',
+            'callbacks' => array(
+              'rate' => 'commerce_pickup_service_rate',
+            ),
+          );
+        }
+      }
+    }
+  }
 
   return $shipping_services;
 }
@@ -143,163 +185,23 @@ function commerce_pickup_commerce_shipping_service_info() {
 function commerce_pickup_service_rate($shipping_service, $order) {
   return array(
     'amount' => 0,
-    'currency_code' => 'USD',
+    'currency_code' => commerce_default_currency(),
     'data' => array(),
   );
 }
 
-/**
- * Shipping service callback: returns the pickup shipping service details form.
- */
-function commerce_pickup_service_details_form($pane_form, $pane_values, $checkout_pane, $order, $shipping_service) {
-  $form = array();
+/***************************************************************
+ * Views API hooks
+ * *************************************************************/
 
-  // Add the pickup location to the service details array.
-  $pane_values['service_details'] += array(
-    'location' => '',
+/**
+ * Implements hook_views_api().
+ */
+function commerce_pickup_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'commerce_pickup') . '/views',
   );
-
-  // Load the pickup location options.
-  $options = _commerce_pickup_location_options();
-  $options_attr = _commerce_pickup_location_options_taxonomy();
- 
- /* $options_attr = array('node__depot_location__275' => array('taxonomy' => 'pork'),
-		'node__depot_location__276' => array('taxonomy' => 'pork'),
-		'node__depot_location__277' => array('taxonomy' => 'pork'),
-		);*/
-  // Alias the default value.
-  $default_value = $pane_values['service_details']['location'];
-  
-  $dropdown_source = taxonomy_get_tree(9);
-  
-	foreach ($dropdown_source as $item) {
-		$key = $item->tid;
-		$value = $item->name;
-		$dropdown_array[$key] = $value;
-	}
-
-  $form['region-choose'] = array(
-      '#type' => variable_get('commerce_pickup_location_list_element', 'radios'),
-      '#title' => t('Select a region...'),
-      '#options' => $dropdown_array,
-      '#attributes' => array('onchange'=>'javascript:return onChooseRegion()'),
-      '#required' => TRUE,
-    );
-  
-  // Location selection field.
-  $form['location'] = array(
-    '#type' => variable_get('commerce_pickup_location_list_element', 'radios'),
-    '#title' => t('Select a location...'),
-    '#description' => t(variable_get('commerce_pickup_location_list_description', '')),
-    '#options' => $options,
-    '#options_attributes' => $options_attr,
-    '#required' => TRUE,
-  );
-
-  return $form;
-}
-
-/****************************************************************
- * Access callbacks
- * **************************************************************/
-
-/**
- * Access callback for /admin/commerce/orders/%/pickup
- *
- * Checks to see if the order has pickup line items.
- *
- * @param $order
- *   The order to check.
- *
- * @return
- *   Returns TRUE if the order has pickup line items, FALSE otherwise.
- */
-function commerce_pickup_order_access($string, $order, $account = NULL) {
-
-  // Get the order's pickup line item.
-  $line_item = _commerce_pickup_order_line_item($order);
-
-  // If there is a pickup line item, return TRUE.
-  if (!empty($line_item)) {
-    return user_access($string, $account);
-  }
-
-  // Otherwise, return FALSE.
-  return FALSE;
-}
-
-/****************************************************************
- * Form functions
- * **************************************************************/
-
-/**
- * Pickup form in the order admin interface.
- */
-function commerce_pickup_order_pickup_form($form, &$form_state, $order) {
-
-  // Get the order's pickup line item.
-  $line_item = _commerce_pickup_order_line_item($order);
-
-  // If a line item was found, display form fields for it.
-  if (!empty($line_item)) {
-
-    // Store the line item in the form values.
-    $form['line_item'] = array(
-      '#type' => 'value',
-      '#value' => $line_item,
-    );
-
-    // Load the default value from the line item.
-    $default_value = $line_item->data['service_details']['location'];
-
-    // Pickup location
-    $form['location'] = array(
-      '#type' => variable_get('commerce_pickup_location_list_element', 'radios'),
-      '#title' => t('Select a location...'),
-      '#description' => t('This is the pickup location chosen by the customer.'),
-      '#options' => _commerce_pickup_location_options(),
-      '#default_value' => $default_value,
-      '#required' => TRUE,
-    );
-
-    // Submit button
-    $form['actions']['submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Save'),
-    );
-  }
-
-  // Link back to the order view.
-  $form['actions']['back'] = array(
-    '#markup' => l(t('Cancel'), 'admin/commerce/orders/' . $order->order_id),
-  );
-
-  // Return the form.
-  return $form;
-}
-
-/**
- * Submit function for commerce_pickup_order_pickup_form().
- */
-function commerce_pickup_order_pickup_form_submit($form, &$form_state) {
-
-  // If the location and line item are set...
-  if (!empty($form_state['values']['location']) && !empty($form_state['values']['line_item'])) {
-
-    // Alias the location and the line item.
-    $location = $form_state['values']['location'];
-    $line_item = $form_state['values']['line_item'];
-
-    // If the location is not equal to the original location...
-    if ($location != $line_item->data['service_details']['location']) {
-
-      // Add the new value to the line item.
-      $line_item->data['service_details']['location'] = check_plain($location);
-
-      // Save the line item (this will automatically update the record in {commerce_pickup_line_item}).
-      commerce_line_item_save($line_item);
-    }
-  }
 }
 
 /****************************************************************
@@ -355,13 +257,13 @@ function _commerce_pickup_order_line_item($order) {
 
 /**
  * Helper function for parsing a pickup location value string.
- * Values will be in the form: [entity-type]__[bundle]__[entity-id]
+ * Values will be in the form: commerce_pickup__[entity-type]__[entity-id]
  *
  * @param $value
  *   The pickup location value string to parse
  *
  * @return
- *   Returns an array with keys: 'entity_type', 'bundle', and 'id'.
+ *   Returns an array with keys: 'entity_type' and 'id'.
  */
 function _commerce_pickup_parse_location($value) {
 
@@ -375,8 +277,7 @@ function _commerce_pickup_parse_location($value) {
 
   // Return an array of values.
   return array(
-    'entity_type' => $split[0],
-    'bundle' => $split[1],
+    'entity_type' => $split[1],
     'id' => $split[2],
   );
 }
@@ -393,10 +294,10 @@ function _commerce_pickup_parse_location($value) {
 function _commerce_pickup_line_item_record($line_item) {
 
   // If a location was selected...
-  if (!empty($line_item->data['service_details']['location'])) {
+  if (!empty($line_item->data['shipping_service']['name'])) {
 
     // Parse pickup location value.
-    $data = _commerce_pickup_parse_location($line_item->data['service_details']['location']);
+    $data = _commerce_pickup_parse_location($line_item->data['shipping_service']['name']);
 
     // If the data is not available, bail.
     if (empty($data)) {
@@ -420,165 +321,4 @@ function _commerce_pickup_line_item_record($line_item) {
     // Return the record.
     return $record;
   }
-}
-
-/**
- * Helper function for generating a list of pickup location options.
- *
- * @return
- *   Returns an array of options for use in a form element.
- */
-function _commerce_pickup_location_options_taxonomy() {
-  $options = array();
-
-  // Load the entity/bundle type setting.
-  $entity_bundle = variable_get('commerce_pickup_location_entity', NULL);
-  if ($entity_bundle) {
-
-    // Split the entity/bundle into two separate variables.
-    $split = explode('__', $entity_bundle);
-    if (count($split == 2)) {
-      $entity_type = $split[0];
-      $bundle = $split[1];
-    }
-  }
-
-  // If an entity and bundle were found, load all entities.
-  if (!empty($entity_type) && !empty($bundle)) {
-
-    // Start a new Entity Field Query.
-    $query = new EntityFieldQuery();
-
-    // Set the entity type and bundle.
-    $query->entityCondition('entity_type', $entity_type);
-    $query->entityCondition('bundle', $bundle);
-
-    // Execute the query.
-    $result = $query->execute();
-
-    // Iterate through the results to build a list of entity titles.
-    if (!empty($result)) {
-      foreach ($result as $entity_type => $entities) {
-
-        // If there are entities...
-        if (!empty($entities)) {
-
-          // Load entity info.
-          $entity_info = entity_get_info($entity_type);
-
-          // Iterate through the entities.
-          foreach ($entities as $entity_id => $data) {
-
-            // Get the entity id.
-            $id = $data->$entity_info['entity keys']['id'];
-
-            // Load the entities.
-            $loaded_entities = entity_load($entity_type, array($id));
-
-            // Alias the first (and only) entity.
-            $entity = reset($loaded_entities);
-
-            // Load the entity label.
-            $entity_label = entity_label($entity_type, $entity);
-
-            // Load the entity uri.
-            $entity_uri = entity_uri($entity_type, $entity);
-
-            // Add an option for the entity (using the entity's label). If it's a radio list, display it as a link.
-            if (variable_get('commerce_pickup_location_list_element', 'radios') == 'radios') {
-              $options[$entity_bundle . '__' . $id] = l($entity_label, $entity_uri['path']);
-            }
-            else {
-	           $node = node_load($id);
-	           $taxonomy = 44;
-	           if(count($node)>0){
-		           if(count($node->field_pickup_region)>0){
-			         $taxonomy =   $node->field_pickup_region['und'][0]['tid'];
-		           }
-		           
-	           } 
-	            
-              //$options[$entity_bundle . '__' . $id] = $entity_label."dsadsa";
-              $options[$entity_bundle . '__' . $id]  = array('taxonomy'=>$taxonomy);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Return the array of options.
-  return $options;
-}
-function _commerce_pickup_location_options() {
-  $options = array();
-
-  // Load the entity/bundle type setting.
-  $entity_bundle = variable_get('commerce_pickup_location_entity', NULL);
-  if ($entity_bundle) {
-
-    // Split the entity/bundle into two separate variables.
-    $split = explode('__', $entity_bundle);
-    if (count($split == 2)) {
-      $entity_type = $split[0];
-      $bundle = $split[1];
-    }
-  }
-
-  // If an entity and bundle were found, load all entities.
-  if (!empty($entity_type) && !empty($bundle)) {
-
-    // Start a new Entity Field Query.
-    $query = new EntityFieldQuery();
-
-    // Set the entity type and bundle.
-    $query->entityCondition('entity_type', $entity_type);
-    $query->entityCondition('bundle', $bundle);
-
-    // Execute the query.
-    $result = $query->execute();
-
-    // Iterate through the results to build a list of entity titles.
-    if (!empty($result)) {
-      foreach ($result as $entity_type => $entities) {
-
-        // If there are entities...
-        if (!empty($entities)) {
-
-          // Load entity info.
-          $entity_info = entity_get_info($entity_type);
-
-          // Iterate through the entities.
-          foreach ($entities as $entity_id => $data) {
-
-            // Get the entity id.
-            $id = $data->$entity_info['entity keys']['id'];
-
-            // Load the entities.
-            $loaded_entities = entity_load($entity_type, array($id));
-
-            // Alias the first (and only) entity.
-            $entity = reset($loaded_entities);
-
-            // Load the entity label.
-            $entity_label = entity_label($entity_type, $entity);
-
-            // Load the entity uri.
-            $entity_uri = entity_uri($entity_type, $entity);
-
-            // Add an option for the entity (using the entity's label). If it's a radio list, display it as a link.
-            if (variable_get('commerce_pickup_location_list_element', 'radios') == 'radios') {
-              $options[$entity_bundle . '__' . $id] = l($entity_label, $entity_uri['path']);
-            }
-            else {
-              $options[$entity_bundle . '__' . $id] = $entity_label;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Return the array of options.
-  return $options;
 }

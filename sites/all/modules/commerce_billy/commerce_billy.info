@@ -12,9 +12,9 @@ dependencies[] = rules
 
 configure = admin/commerce/config/billy-invoice
 
-; Information added by Drupal.org packaging script on 2015-03-30
-version = "7.x-1.0"
+; Information added by Drupal.org packaging script on 2017-02-28
+version = "7.x-1.2"
 core = "7.x"
 project = "commerce_billy"
-datestamp = "1427709183"
+datestamp = "1488293285"
 

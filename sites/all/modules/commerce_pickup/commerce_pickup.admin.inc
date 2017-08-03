@@ -27,7 +27,7 @@ function commerce_pickup_settings_form($form, &$form_state) {
   $form['commerce_pickup_location_entity'] = array(
     '#type' => 'select',
     '#title' => t('Pickup location bundle'),
-    '#description' => t('Select the entity bundle you would like to use for pickup locations. Note: only bundles with an !addressfield are listed.', array('!addressfield' => l(t('Addressfield'), 'http://drupal.org/project/addressfield'))),
+    '#description' => t('Select the entity bundle you would like to use for pickup locations. WARNING: Changing this after pickup locations have been used in orders will have weird side-effects with the pickup location field in Views.'),
     '#options' => $options,
     '#default_value' => variable_get('commerce_pickup_location_entity', NULL),
     '#required' => TRUE,
@@ -40,26 +40,6 @@ function commerce_pickup_settings_form($form, &$form_state) {
     '#description' => t('Specify how you would like the pickup service to appear in checkout and in the order line item.'),
     '#default_value' => variable_get('commerce_pickup_service_display_title', 'Pickup'),
     '#required' => TRUE,
-  );
-
-  // Location list form element.
-  $form['commerce_pickup_location_list_element'] = array(
-    '#type' => 'radios',
-    '#title' => t('Location list form element'),
-    '#description' => t('Select the form element that should be used for selecting a location in checkout.'),
-    '#options' => array(
-      'radios' => t('Radio buttons'),
-      'select' => t('Select list (dropdown)'),
-    ),
-    '#default_value' => variable_get('commerce_pickup_location_list_element', 'radios'),
-  );
-
-  // Location list description.
-  $form['commerce_pickup_location_list_description'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Pickup location list description'),
-    '#description' => t('A description of the pickup locations displayed with them in checkout.'),
-    '#default_value' => variable_get('commerce_pickup_location_list_description', ''),
   );
 
   return system_settings_form($form);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single
@@ -8,18 +9,7 @@
  * - $css: An array of CSS files for the current page.
  * - $language: (object) The language the site is being displayed in.
  *   $language->language contains its textual representation.
- *   $language->dir contains the language direction. It will either be 'ltr' or
- *   'rtl'.
- * - $html_attributes:  String of attributes for the html element. It can be
- *   manipulated through the variable $html_attributes_array from preprocess
- *   functions.
- * - $html_attributes_array: An array of attribute values for the HTML element.
- *   It is flattened into a string within the variable $html_attributes.
- * - $body_attributes:  String of attributes for the BODY element. It can be
- *   manipulated through the variable $body_attributes_array from preprocess
- *   functions.
- * - $body_attributes_array: An array of attribute values for the BODY element.
- *   It is flattened into a string within the variable $body_attributes.
+ *   $language->dir contains the language direction. It will either be 'ltr' or 'rtl'.
  * - $rdf_namespaces: All the RDF namespace prefixes used in the HTML document.
  * - $grddl_profile: A GRDDL profile allowing agents to extract the RDF data.
  * - $head_title: A modified version of the page title, for use in the TITLE
@@ -46,107 +36,28 @@
  * - $classes String of classes that can be used to style contextually through
  *   CSS.
  *
- * @see bootstrap_preprocess_html()
  * @see template_preprocess()
  * @see template_preprocess_html()
  * @see template_process()
- * @ingroup templates
+ *
+ * @ingroup themeable
  */
-?>
-<!DOCTYPE html>
-<html<?php print $html_attributes;?>
-<?php print $rdf_namespaces;?>>
-<head>
-<link rel="profile" href="<?php print $grddl_profile; ?>" />
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="Uqn6NP4m52Iy-i9geH47x1A6WkCF-1bzfNoIXJjh3zk" />
-<?php print $head; ?>
-<title><?php print $head_title; ?></title>
-<?php print $styles; ?>
-<!-- HTML5 element support for IE6-8 -->
-<!--[if lt IE 9]>
-<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<?php print $scripts; ?>
-<script src="https://code.jquery.com/jquery-migrate-1.3.0.js"></script>
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 
-<?php
-if( arg(0)=='node' && is_numeric(arg(1)) ) 
-{
-	$is_thankyou_node = false;
-	
-	$nid = arg(1);
-	$nodecheck = node_load($nid);
-	
-	$is_product_node  = ($nodecheck->type == 'product') ? true : false;
-	
-	$arr_list_of_nodes = array('3', '4', '7');
-	
-	if(in_array($nid, $arr_list_of_nodes)) 
-	{
-	 $is_thankyou_node = true;
-	}
-}
- 
-if(drupal_is_front_page() || $is_product_node): ?>
-
-<script>  window.intercomSettings = { app_id: "s3r7ksql"  };  </script>
-<script>
-(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/s3r7ksql';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
-</script>
-
-<?php endif; ?>
-<?php
-
-if (strpos($_SERVER['REDIRECT_URL'], 'checkout') !== false) {
-    echo 'yessssssss';
-}
-
-
-
-?>
-
-<?php if($is_thankyou_node): ?>
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 866877707;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "Oa-jCJL68WwQi4KunQM";
-var google_remarketing_only = false;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/866877707/?label=Oa-jCJL68WwQi4KunQM&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
-<?php endif; ?>
-
-<!-- 
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MKM7GS9');
-</script>
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MKM7GS9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
--->
-
+<head profile="<?php print $grddl_profile; ?>">
+  <?php print $head; ?>
+  <title><?php print $head_title; ?></title>
+  <?php print $styles; ?>
+  <?php print $scripts; ?>
 </head>
-<body<?php print $body_attributes; ?>>
+<body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
-  <div id="wrapper">
   <?php print $page_top; ?>
   <?php print $page; ?>
-
   <?php print $page_bottom; ?>
-  </div>
 </body>
-</html>  
+</html>

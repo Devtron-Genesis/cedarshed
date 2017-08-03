@@ -58,19 +58,38 @@ function commerce_billy_mail_settings_form() {
     '#dialog' => TRUE,
   );
 
-  $form['commerce_billy_mail_attach_pdf_invoice'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Attach PDF invoice'),
-    '#description' => t("Send the Billy PDF invoice attached."),
-    '#default_value' => variable_get('commerce_billy_mail_attach_pdf_invoice', TRUE) && module_exists('commerce_billy_pdf'),
-    '#disabled' => !module_exists('commerce_billy_pdf'),
-  );
-
   $form['commerce_billy_mail_plaintext'] = array(
     '#type' => 'checkbox',
     '#title' => t('Send E-mails as plain text.'),
     '#description' => t("Send the invoice E-mails as plain text (no HTML body)."),
     '#default_value' => variable_get('commerce_billy_mail_plaintext', FALSE));
+
+  $form['commerce_billy_mail_attach_pdf_invoice'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Attach PDF invoice'),
+    '#description' => t("Send the Billy PDF invoice attached.<br /><strong>Important:</strong> You need to enable commerce_billy_pdf and check your status page to see if you meet the requirements for an attachment handling email library like !mimemail.", array('!mimemail' => l('Mimemail', 'https://www.drupal.org/project/mimemail'))),
+    '#default_value' => variable_get('commerce_billy_mail_attach_pdf_invoice', TRUE) && module_exists('commerce_billy_pdf'),
+    '#disabled' => !module_exists('commerce_billy_pdf'),
+  );
+
+  $is_theme_registry_workaround_available = _commerce_billy_mail_is_theme_registry_workaround_available();
+  if ($is_theme_registry_workaround_available) {
+    $form['commerce_billy_mail_use_theme_registry_workaround_theme_items'] = array(
+      '#type' => 'select',
+      '#title' => t('PDF invoice: Use theme registry admin theme workaround (Advanced)'),
+      '#description' => t('This workaround is <strong>only recommended and available if</strong> you 1. use an administration theme AND have overridden .tpl.php template files of the commerce_billy_pdf module in your default theme: @default_theme The reason is a limitation in Drupals theme detection when using an administration theme. <strong>Warning:</strong> If you select a file that isn\'t overridden in your default template directory, no template file will be found!', array('@default_theme' => commerce_billy_mail_custom_theme())),
+      '#default_value' => variable_get('commerce_billy_mail_use_theme_registry_workaround_theme_items', array()),
+      '#options' => _commerce_billy_mail_get_pdf_theme_items(),
+      '#disabled' => !$is_theme_registry_workaround_available,
+      '#multiple' => TRUE,
+      '#states' => array(
+        // Only show if PDF invoice is enabled
+        'visible' => array(
+          ':input[name="commerce_billy_mail_attach_pdf_invoice"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+  }
 
   return system_settings_form($form);
 }

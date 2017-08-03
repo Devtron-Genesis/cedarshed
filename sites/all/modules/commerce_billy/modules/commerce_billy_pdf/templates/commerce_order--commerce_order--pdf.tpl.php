@@ -23,7 +23,7 @@
   <div class="order-id"><?php print render($content['order_id']); ?></div>
 
   <div class="line-items">
-    <div class="line-items-view"> <?php print render($content['commerce_line_items']); ?></div>
+    <div class="line-items-view"><?php print render($content['commerce_line_items']); ?></div>
     <div class="order-total"><?php print render($content['commerce_order_total']); ?></div>
   </div>
   <div class="invoice-text"><?php print render($content['invoice_text']); ?></div>

@@ -12,7 +12,7 @@ function commerce_billy_mail_menu() {
     'page arguments' => array('commerce_billy_mail_settings_form'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'commerce_billy_mail.admin.inc');
-  $items['admin/commerce/orders/%commerce_order/resend-pdf-invoice'] = array(
+  $items['admin/commerce/orders/%commerce_order/edit/resend-pdf-invoice'] = array(
     'title' => 'Resend invoice mail',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('commerce_billy_mail_resend_form', 3),
@@ -24,7 +24,7 @@ function commerce_billy_mail_menu() {
     'file' => 'commerce_billy_mail.module',
     'file path' => drupal_get_path('module', 'commerce_billy_mail') . '/',
     // We have to set the base theme here, otherwise the admin page
-    // will wrongly inherit the admin theme for theming.
+// will wrongly inherit the admin theme for theming.
     'theme callback' => 'commerce_billy_mail_custom_theme',
   );
   return $items;
@@ -63,77 +63,111 @@ function commerce_billy_mail_resend_access($order) {
  * @return boolean
  */
 function _commerce_billy_mail_send_order_invoice($order) {
-  global $language;
-  if (empty($order) || !is_object($order)) {
-    drupal_set_message('Given order was empty or no object. No invoice was sent!', 'error');
-    watchdog('commerce_billy_mail', 'Given order was empty or no object. No invoice was sent!', WATCHDOG_ERROR);
-    return false;
-  }
+  try {
+    global $language;
+    if(!empty($order->order_id)){
+      // (Re-)load the order to ensure we have the order object here.
+      // This is especially important for cron runs there the object is not always loaded.
+      $order = commerce_order_load($order->order_id);
+    } else {
+      drupal_set_message('Given order-id was empty. The order could not be loaded or identified. Please check your configuration. No invoice was sent!', 'error');
+      watchdog('commerce_billy_mail', 'Given order-id was empty. The order could not be loaded or identified. Please check your configuration. No invoice was sent!', WATCHDOG_ERROR);
+      return false;
+    }
+    if (empty($order) || !is_object($order)) {
+      drupal_set_message('Given order was empty or no object. No invoice was sent!', 'error');
+      watchdog('commerce_billy_mail', 'Given order was empty or no object. No invoice was sent!', WATCHDOG_ERROR);
+      return false;
+    }
 
-  $order_account_uid = $order->uid;
-  $order_account = user_load($order_account_uid);
-  if (user_is_logged_in()) {
-    // Order user (customer): Use the users language.
+    $order_account_uid = $order->uid;
+    $order_account = user_load($order_account_uid);
+// Get the order owners language.
     $order_account_language = user_preferred_language($order_account);
-  }
-  else {
-    // The user is anonymous. Use current global language.
-    $order_account_language = $language;
-  }
+// Save the site language temporarily.
+// IMPORTANT: Because the site language may not match the order user language (cron runs e.g.) and we have no other chance
+// we temporarily change the global language here until there is a better solution.
+// TODO: This might change the language if the chain breaks between this and the reset.
+    $temp_language = $language;
+    $language = $order_account_language;
 
-  // Sender:
-  $from = variable_get('commerce_billy_mail_from', '');
+    if (module_exists('i18n_variable')) {
+// If i18n_variable module is used:
+// Get the text variables directly and not from the cache, because the language might not match the current $language here.
+      $subject = i18n_variable_get('commerce_billy_mail_subject', $language->language, '');
+      // i18n_variable_get returns nothing if the realm is not set -.-
+      if (is_null($subject)) {
+        // Default variable get.
+        $subject = variable_get('commerce_billy_mail_subject', '');
+      }
+      $body = i18n_variable_get('commerce_billy_mail_body', $language->language, ''); //body text in HTML format
+      // i18n_variable_get returns nothing if the realm is not set -.-
+      if (is_null($body)) {
+        // Default variable get.
+        $body = variable_get('commerce_billy_mail_body', ''); //body text in HTML format
+      }
+    }
+    else {
+      // Default variable get.
+      $subject = variable_get('commerce_billy_mail_subject', '');
+      $body = variable_get('commerce_billy_mail_body', ''); //body text in HTML format
+    }
 
-  // Content:
-  $subject = variable_get('commerce_billy_mail_subject', '');
-  $body = variable_get('commerce_billy_mail_body', ''); //body text in HTML format
-  // Attachments:
-  if (variable_get('commerce_billy_mail_attach_pdf_invoice', TRUE)) {
-    $attachments = _commerce_billy_mail_get_attachments($order);
-  }
-  else {
-    $attachments = array();
-  }
+// Attachments:
+    if (variable_get('commerce_billy_mail_attach_pdf_invoice', TRUE)) {
+      $attachments = _commerce_billy_mail_get_attachments($order);
+    }
+    else {
+      $attachments = array();
+    }
 
-  // Replace tokens
-  $subject = token_replace($subject, array('user' => $order_account, 'commerce_order' => $order), array('language' => $order_account_language));
-  $body = token_replace($body, array('user' => $order_account, 'commerce_order' => $order), array('language' => $order_account_language));
+// Replace tokens
+    $subject = token_replace($subject, array('user' => $order_account, 'commerce_order' => $order), array('language' => $order_account_language, 'clear' => TRUE));
+    $body = token_replace($body, array('user' => $order_account, 'commerce_order' => $order), array('language' => $order_account_language, 'clear' => TRUE));
 
-  // Set values in mail:
-  $plaintext = variable_get('commerce_billy_mail_plaintext', FALSE);
-  $params = array(
-    'subject' => $subject,
-    'body' => $body,
-    'plain' => !empty($plaintext),
-    'attachments' => $attachments,
-    'headers' => array(
-      'Cc' => trim(variable_get('commerce_billy_mail_cc', '')),
-      'Bcc' => trim(variable_get('commerce_billy_mail_bcc', '')),
-    ),
-    'context' => array(
+// Set values in mail:
+    $plaintext = variable_get('commerce_billy_mail_plaintext', FALSE);
+    $params = array(
       'subject' => $subject,
       'body' => $body,
-      'order' => $order,
-    ),
-  );
-  // Remove the Bcc and Cc headers if they are empty, else this will crash phpmailer and maybe other modules.
-  if (empty($params['headers']['Cc'])) {
-    unset($params['headers']['Cc']);
-  }
-  if (empty($params['headers']['Bcc'])) {
-    unset($params['headers']['Bcc']);
-  }
+      'plain' => !empty($plaintext),
+      'attachments' => $attachments,
+      'headers' => array(
+        'Cc' => trim(variable_get('commerce_billy_mail_cc', '')),
+        'Bcc' => trim(variable_get('commerce_billy_mail_bcc', '')),
+      ),
+      'context' => array(
+        'subject' => $subject,
+        'body' => $body,
+        'order' => $order,
+      ),
+    );
+// Remove the Bcc and Cc headers if they are empty, else this will crash phpmailer and maybe other modules.
+    if (empty($params['headers']['Cc'])) {
+      unset($params['headers']['Cc']);
+    }
+    if (empty($params['headers']['Bcc'])) {
+      unset($params['headers']['Bcc']);
+    }
 
-  $mailkey = 'commerce_billy_send_order_invoice';
-  $send = true;
-  // Send!
-  $message = drupal_mail('commerce_billy_mail', $mailkey, $order->mail, $order_account_language, $params, $from, $send);
-  if (!$message['result']) {
-    watchdog('commerce_billy_mail', 'Error sending e-mail (from %from to %to).', array('%from' => $message['from'], '%to' => $message['to']), WATCHDOG_ERROR);
-    drupal_set_message(t('Unable to send e-mail. Contact the site administrator if the problem persists.'), 'error');
+    $from = variable_get('commerce_billy_mail_from', variable_get('site_mail', ini_get('sendmail_from')));
+    $mailkey = 'commerce_billy_send_order_invoice';
+    $send = true;
+// Send!
+    $message = drupal_mail('commerce_billy_mail', $mailkey, $order->mail, $order_account_language, $params, $from, $send);
+
+// Reset the global language to its initial value.
+    $language = $temp_language;
+    if (!$message['result']) {
+      watchdog('commerce_billy_mail', 'Error sending e-mail (from %from to %to).', array('%from' => $message['from'], '%to' => $message['to']), WATCHDOG_ERROR);
+      throw new Exception(t('Unable to send e-mail. Contact the site administrator if the problem persists.'));
+    }
+    return TRUE;
+  } catch (Exception $exception) {
+    // TODO - Create an own commerce_billy_mail exception class and only catch that.
+    _drupal_log_error(_drupal_decode_exception($exception), FALSE);
     return FALSE;
   }
-  return TRUE;
 }
 
 /**
@@ -169,11 +203,11 @@ function commerce_billy_mail_mail($key, &$message, $params) {
  * Implements hook_custom_theme().
  */
 function commerce_billy_mail_custom_theme() {
-  // We have to set the default theme by hard here, otherwise the pdf
-  // theming will be broken by admin theme in some cases.
-  // Mailsystem is no helper here, because it doesn't act on the PDF.
-  // Hint: This is not enough. Furthermore this function has to be set as
-  // "theme callback" in hook_menu for the resend functionality!
+// We have to set the default theme by hard here, otherwise the pdf
+// theming will be broken by admin theme in some cases.
+// Mailsystem is no helper here, because it doesn't act on the PDF.
+// Hint: This is not enough. Furthermore this function has to be set as
+// "theme callback" in hook_menu for the resend functionality!
   return variable_get('theme_default');
 }
 
@@ -188,10 +222,13 @@ function _commerce_billy_mail_get_attachments($order) {
 
   list($html, $filename) = commerce_billy_mail_pdf_prepare($order);
   $pdf_filecontent = commerce_billy_mail_pdf_create($html, $filename);
+  $filemime = 'application/pdf';
   $attachments[] = array(
-    'filecontent' => $pdf_filecontent, //you have to use relative paths.
+    'filecontent' => $pdf_filecontent, // we use a dynamically created file.
     'filename' => $filename, // can use any alias name here
-    'filemime' => 'application/pdf', // mime file type
+    'name' => $filename, // required for mandril and other libraries.
+    'filemime' => $filemime, // mime file type
+    'type' => $filemime, // required for mandril and other libraries
     'list' => TRUE,
   );
 
@@ -206,8 +243,8 @@ function _commerce_billy_mail_get_attachments($order) {
  * @return array
  */
 function commerce_billy_mail_pdf_prepare($order) {
-  // Currently a copy of the first part of
-  // See: https://drupal.org/node/2099283
+// Currently a copy of the first part of
+// See: https://drupal.org/node/2099283
   if (module_exists('commerce_billy_pdf')) {
     module_load_include('module', 'commerce_billy_pdf');
   }
@@ -216,7 +253,7 @@ function commerce_billy_mail_pdf_prepare($order) {
   }
   $html = commerce_billy_pdf_html($order);
 
-  // TODO: Better use $filename = commerce_billy_pdf_gen_filename($order); when issue #2093643 is resolved in commerce_billy.
+// TODO: Better use $filename = commerce_billy_pdf_gen_filename($order); when issue #2093643 is resolved in commerce_billy.
   $filename = preg_replace('/[^a-z0-9]/', '_', drupal_strtolower('invoice_' . $order->order_number)) . '.pdf';
   if (module_exists('transliteration')) {
     $filename = transliteration_clean_filename($filename);
@@ -237,9 +274,8 @@ function commerce_billy_mail_pdf_prepare($order) {
 function commerce_billy_mail_pdf_create($html, $filename) {
   $dompdf = commerce_billy_pdf_prepare_dompdf($html, $filename);
   if (!is_object($dompdf)) {
-    watchdog('commerce_billy_mail', 'PDF document could not be created. Check commerce_billy_pdf configuration to ensury DOMPDF is installed correctly.', WATCHDOG_ERROR);
+    throw new Exception('PDF document could not be created. Check commerce_billy_pdf configuration to ensure DOMPDF is correctly available.');
   }
-
   $filecontent = $dompdf->output();
 
   return $filecontent;
@@ -278,4 +314,69 @@ function commerce_billy_mail_resend_form_submit($form, &$form_state) {
     drupal_set_message(t('The PDF could not be resent.'), 'error');
   }
   $form_state['redirect'] = 'admin/commerce/orders/' . $order->order_id;
+}
+
+/**
+ * Implements hook_paths_alter().
+ *
+ * Don't render pdf in admin theme, otherwise the templates and css files
+ * are not handled correctly.
+ *
+ * IMPORTANT HINT: It may be required to add further path in a
+ * custom module to add other paths generating the PDF invoice!
+ *
+ * @param array $paths
+ */
+function commerce_billy_mail_admin_paths_alter(&$paths) {
+  $paths['admin/commerce/orders/*/pdf-invoice'] = FALSE;
+}
+
+/**
+ * Implements hook_theme_registry_alter.
+ */
+function commerce_billy_mail_theme_registry_alter(&$theme_registry) {
+  // PDF invoice: Use theme registry workaround to ignore admin theme
+  if (_commerce_billy_mail_is_theme_registry_workaround_available()) {
+    $selected_theme_registry_workaround_theme_items = variable_get('commerce_billy_mail_use_theme_registry_workaround_theme_items', array());
+    // Fetch the directory from a variable to make it overridable for developers in special cases.
+    $theme_item_keys = _commerce_billy_mail_get_pdf_theme_items();
+    if (!empty($selected_theme_registry_workaround_theme_items) && !empty($theme_item_keys)) {
+      $selected_theme_registry_workaround_theme_items = array_intersect($selected_theme_registry_workaround_theme_items, $theme_item_keys);
+      $theme_template_dir = variable_get('commerce_billy_mail_theme_templates_dir', '/templates');
+      foreach ($selected_theme_registry_workaround_theme_items as $theme_item_key) {
+        $theme_registry[$theme_item_key]['path'] = drupal_get_path('theme', commerce_billy_mail_custom_theme()) . $theme_template_dir;
+      }
+    }
+  }
+}
+
+/**
+ *
+ */
+function _commerce_billy_mail_get_pdf_theme_items() {
+  if (_commerce_billy_mail_is_theme_registry_workaround_available()) {
+    module_load_include('module', 'commerce_billy_pdf');
+    if (function_exists('commerce_billy_pdf_theme')) {
+      $theme_items = commerce_billy_pdf_theme();
+      $theme_item_keys = array_keys($theme_items);
+      $result = array();
+      if (!empty($theme_item_keys)) {
+        foreach ($theme_item_keys as $theme_item_key) {
+          // Make key and value the same.
+          $result[$theme_item_key] = $theme_item_key;
+        }
+      }
+      return $result;
+    }
+  }
+  return array();
+}
+
+/**
+ * Helper function that returns true if the theme registry workaround is available, else false.
+ * @return boolean
+ */
+function _commerce_billy_mail_is_theme_registry_workaround_available() {
+  $admin_theme = variable_get('admin_theme', 0);
+  return !empty($admin_theme) && variable_get('commerce_billy_mail_attach_pdf_invoice', TRUE) && module_exists('commerce_billy_pdf');
 }
