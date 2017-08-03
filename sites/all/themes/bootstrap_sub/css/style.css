@@ -28,7 +28,7 @@ body{
 }
 
 .not-front{
-	
+
 	background: none;
 }
 .not-front .content_site{
@@ -41,7 +41,7 @@ body{
 
 .not-front #wrapper{
 	background: url("images/bg_bottom.png") bottom no-repeat;
-	
+
 }
 
 .page-node-61{
@@ -59,7 +59,7 @@ body{
 img{
 	max-width: 100%;
 	height: auto;
-	
+
 }
 
 p, ul, ol{
@@ -196,7 +196,7 @@ textarea,
 
 .not-front .webform-client-form .webform-submit:hover,
 .commerce-add-to-cart button:hover,
-.views-field-view-node a:hover, 
+.views-field-view-node a:hover,
 .view-gazebos .views-field-tid a:hover{
 	color: #7ca524 !important;
 	border: 2px solid #7ca524 !important;
@@ -348,7 +348,7 @@ label.css-label {
 .header .checkout #block-block-19 .count{
 	right: 50px;
     top: 55px;
-	
+
 }
 /*
  * SOCIALS
@@ -401,7 +401,7 @@ a.social.facebook {
     font-weight: 400;
     font-size: 18px;
     font-family: 'Fira Sans', sans-serif;
-	
+
 }
 #main-navigation > ul > li > a:hover,
 #main-navigation > ul > li > a:focus,
@@ -749,7 +749,12 @@ footer .design {
 .carousel-caption .btn {
 	width: 290px;
 }
-
+.front .carousel-caption .btn {
+    width: 350px;
+}
+.front .sharethis-buttons {
+    display: none;
+}
 .pno:hover{
 	color: #2f3272;
 }
@@ -834,7 +839,7 @@ ul{
 .commerce-add-to-cart button:hover{
     background: url('images/icon-cart.png') 15px center no-repeat #7ca524;
     padding: 5px 20px 5px 50px;
-	
+
 }
 
 .commerce-add-to-cart button:hover{
@@ -894,7 +899,7 @@ ul{
 	float: right;
 	margin-right: 35px;
 	margin-top: 20px;
-	
+
 }
 
 .jcarousel-skin-default{
@@ -905,19 +910,19 @@ ul{
 
 .commerce-add-to-cart .entity-commerce-product{
 	min-width: 400px;
-	
+
 }
 
 .tabcontent .form-type-checkbox .field-name-commerce-price {
 	font-size: 20px;
 	float: right;
-	
+
 }
 
 .tab_c{
 	float: left;
 	min-width: 140px;
-	
+
 }
 
 
@@ -932,15 +937,15 @@ ul{
 	letter-spacing: 1px;
 	background: #7ca524;
     margin-right: 7px;
-} 
+}
 
 #block-views-block-category-block{
-	
-	
+
+
 }
 #block-views-block-category-block .views-row{
-	
-	
+
+
 }
 #block-views-block-category-block .views-row-1 {
 	background: url('images/bg_cat_1.png') left center no-repeat;
@@ -968,7 +973,7 @@ ul{
 	font-size: 42px;
 	color: #fff;
 	text-align: center;
-	
+
 }
 #block-views-block-category-block .views-row-2 .views-field-name .field-content{
 	padding-top: 30px;
@@ -1007,7 +1012,7 @@ ul{
 .view-accessories-node .views-row:nth-child(3n+2){
 	margin-left: 24px;
 	margin-right: 24px;
-	
+
 }
 
 .view-accessories-node .views-field-field-image-accessories img{
@@ -1025,7 +1030,7 @@ ul{
 	width: 100%;
 	clear: both;
 	float: none;
-	
+
 }
 
 .view-accessories-node .views-row a{
@@ -1048,14 +1053,14 @@ ul{
 {
 	float: left;
 	width: 170px;
-	
+
 }
 .view-accessories-node .views-field-body,
 .view-accessories-node .views-field-nid
 {
 	float: right;
 	width: 164px;
-	
+
 }
 .view-accessories-node .views-field-body{
 	margin-bottom: 10px;
@@ -1152,7 +1157,7 @@ a.btn{
 	    margin-bottom: 20px;
 }
 
-.bigImageget{display:none} 
+.bigImageget{display:none}
 
 .pagination{
 	clear: both;
@@ -1323,38 +1328,38 @@ ol.inline.commerce-checkout-progress li.active{
 	    background-size: 100% 100% !important;
 	    /* background: url(images/bg-front-big.png) no-repeat; */
 	}
-	
+
 	.front .section-box{
 		background: #9BC22F;
 	}
-	
+
 	.front .section-cedar-shed {
 	    background: #FFF;
 	    max-width: 1300px;
 	    margin: auto;
 	    max-width: 1325px;
 	}
-	
+
 	.front footer.footer {
 	    background: #2f3272;
 	}
-	
+
 	.section-gallery .btn-gallery{
 	    /* float: none; */
 	    /* margin: auto; */
 	    /* display: block; */
 	    /* width: 516px; */
 	}
-	
+
 	.section-gallery .title {
 	    margin: 40px auto;
 	    width: 282px;
 	}
-	
+
 	.content_site{
 		min-height: 0;
 	}
-	
+
 	.not-front .content_site, .not-front #wrapper, .page-node-61 {
 	    background-size: 100% 100%;
 	}
@@ -1371,7 +1376,7 @@ ol.inline.commerce-checkout-progress li.active{
     #main-navigation > ul > li{
         padding: 0 12px;
     }
-	
+
 	.sliders .carousel-caption, .sliders .carousel-caption h3 {
 	    font-size: 26px;
 	    line-height: 36px;
@@ -1394,19 +1399,19 @@ ol.inline.commerce-checkout-progress li.active{
 	    font-size: 22px;
 	    line-height: 32px;
 	}
-	
+
 	.sliders {
 	    min-height: 455px;
 	}
 
 	.front .sliders {
 	        min-height: 460px;
-	} 
-	
+	}
+
 	.front, .front{
 		background-position: 0 -70px;
 	}
-	
+
 	.content_site {
 	    min-height: 3280px;
 	}
@@ -1423,15 +1428,15 @@ ol.inline.commerce-checkout-progress li.active{
 	.header .main-menu .navbar-modern{
 		float: left;
 	}
-	
+
 	#main-navigation a, #block-block-15 div{
 		letter-spacing: 0;
 	}
-	
+
     #main-navigation > ul > li{
         padding: 0 8px;
     }
-	
+
 	.content_site {
 	    min-height: 3280px;
 	}
@@ -1442,7 +1447,7 @@ ol.inline.commerce-checkout-progress li.active{
 	    font-size: 20px;
 	    line-height: 28px;
 	}
-	
+
 	.video {
 	    top: 150px;
 	}
@@ -1452,15 +1457,15 @@ ol.inline.commerce-checkout-progress li.active{
 	#block-block-9{
 		width: 85%;
 	}
-	
+
 	.section-box .box a, .section-box .box a:hover, .section-box .box a.active{
 		background-size: 180px 180px !important;
 	}
-	
+
 	.section-gallery .title{
 		margin-left: 440px;
 	}
-	
+
 	.section-box .box{
 		margin: 0;
 	}
@@ -1473,7 +1478,7 @@ ol.inline.commerce-checkout-progress li.active{
     body {
         background-position: 0px -50px;
     }
-	
+
 	.header .contact-info .phones-number, #main-navigation a{
 		font-size: 14px;
 	}
@@ -1481,25 +1486,25 @@ ol.inline.commerce-checkout-progress li.active{
 	#block-block-15{
 		margin-left: 0;
 	}
-	
+
 	.sliders .carousel-caption, .sliders .carousel-caption h3 {
 	    font-size: 22px;
 	    line-height: 32px;
 	}
-	
+
 	.sliders .carousel-caption {
 	    top: 0;
 	    left: 90px;
 	}
-	
+
 	.sliders {
 	    min-height: 375px;
 	}
-	
+
 	.front, .front{
 		background-position: 0 -150px;
 	}
-	
+
 	.content_site {
 	    min-height: 3200px;
 	}
@@ -1507,28 +1512,28 @@ ol.inline.commerce-checkout-progress li.active{
 	.front .content_site {
     	min-height: 3408px;
 	}
-	
+
 	.video{
 		top: 100px;
 		right: 100px;
 	}
-	
+
 	.section-box .box a{
 		width: 200px;
 		    margin: auto;
 	}
-	
+
 	.section-box{
 		margin-bottom: 60px;
 	}
 	.front .sliders {
 	        min-height: 385px;
-	} 
-	
+	}
+
 	.front .section-store {
 		padding-top: 0;
 	}
-	
+
 	.section-gallery .title {
 		margin-top: 80px !important;
 	}
@@ -1538,29 +1543,29 @@ ol.inline.commerce-checkout-progress li.active{
 	.pno{
 		pointer-events: none;
 	}
-	
+
 	.dropdown:hover .dropdown-menu{
 		display: block;
 	}
-	
+
 	.dropdown-menu{
 	    border: none;
 	    box-shadow: none;
 	    padding: 50px 13px 20px;
 	}
-	
+
 	.dropdown-menu > li, .dropdown-menu > li:hover{
 		background: url('images/arrow-list.png') 7px center no-repeat;
 	}
-	
+
 	.dropdown-menu > li > a{
 		padding: 5px 30px 5px 30px !important;
 	}
-	
+
 	.dropdown-menu > li > a:hover{
 		background: none;
 	}
-	
+
 	#block-block-21{
 		display: none;
 	}
@@ -1571,19 +1576,19 @@ ol.inline.commerce-checkout-progress li.active{
 }
 
 @media only screen and (min-width : 1200px) {
-	
+
 	.carousel-caption .btn {
 	    letter-spacing: 4px;
 	}
-	
+
 	#block-block-11 .news{
 		padding-left: 80px;
 	}
-	
+
 	.sestion-contact .form-enquiry form {
 	    padding-left: 95px;
 	}
-	
+
 	.sestion-contact h2.title{
 		padding-left: 60px;
 	}
@@ -1604,11 +1609,11 @@ ol.inline.commerce-checkout-progress li.active{
 	.front .section-store .container{
 		     width: 1110px;
 	}
-	
+
 	.front .section-cedar-shed .container h2.title{
 		margin-top: 0;
 	}
-	
+
 	.section-gallery .title {
 	    margin-top: 115px;
 	}
@@ -1626,7 +1631,7 @@ ol.inline.commerce-checkout-progress li.active{
 	#block-block-23{
 		display: none !important;
 	}
-	
+
     body {
         background-position: 0px -50px;
         background: transparent;
@@ -1640,17 +1645,17 @@ ol.inline.commerce-checkout-progress li.active{
     .header .main-menu {
         text-align: right;
     }
-	
+
 	.sliders{
 		min-height: 280px;
 	}
-	
+
     .sliders .carousel {
         margin-left: 0px;
         background: #9bc22f;
     }
     .sliders .carousel-caption {
-        
+
     }
     .section-box {
         background: #9bc22f;
@@ -1701,7 +1706,7 @@ ol.inline.commerce-checkout-progress li.active{
         background: #fff url(../images/bg-footer-sm.png) left bottom 0px no-repeat;
         /* padding-top: 50px; */
     }
-	
+
 	.front footer.footer, .page-node-61 footer.footer {
 		padding-top: 50px;
 	}
@@ -1710,109 +1715,109 @@ ol.inline.commerce-checkout-progress li.active{
 	    font-size: 20px;
 	    line-height: 28px;
 	}
-	
+
 	.front, .front{
 		background: none;
 	}
-	
+
 	.commerce-add-to-cart .shipping{
 		margin-right: 0;
 	    width: 100%;
 	    margin-top: 0;
 	    margin-bottom: 20px;
 	}
-	
+
 	.view-block-category- .view-header p{
 		text-align: center;
 	}
-	
+
 	#block-views-block-category-block .views-row{
 		margin: auto;
 		float: none;
 	}
-	
+
 	.view-accessories{
 	    margin: auto;
 	    width: 852px;
 	}
-	
+
 	.view-accessories .views-field-name{
 		text-align: center;
 	}
-	
+
 	.view-accessories > .view-content > .views-row{
 		clear: both;
 	}
-	
+
 	.view-accessories-node .views-row{
 		margin-left: 24px;
 		margin-right: 24px;
 	}
-	
+
 	.not-front .content_site, .not-front #wrapper{
 		background: none;
 	}
-	
+
 	.view-taxonomy-term .views-row-3, .view-taxonomy-term .views-row-6{
 		margin-right: 20px;
 	}
-	
+
 	.view-taxonomy-term .views-row{
 		width: 293px;
 	}
-	
+
 	.bigimage{
 		max-width: 440px;
 	}
-	
 
-	
+
+
 	.tabcontent .form-type-checkbox .field-name-commerce-price{
 		float: left;
 	}
-	
+
 	.page-node .node .spec .right{
 		float: left !important;
-		   
+
 	}
-	
+
 	.page-node .node .spec .left{
 		 margin-bottom: 10px;
 	}
-	
+
 	.commerce-add-to-cart .entity-commerce-product {
 	    min-width: 360px;
 	}
-	
+
 	.commerce-add-to-cart .form-type-checkbox .commerce-product-title{
 		width: auto !important;
 	}
-	
+
 	.page-node-61 {
 		    background: url("images/bg-contact-mobile.jpg") top center no-repeat;
 	}
-	
+
 	.page-node-61 .content_site{
 		height: auto;
 	}
-	
+
 	.not-front .content_site {
 	    min-height: 0;
 	}
-	
+
 	.page-news .section-cedar-shed .col-sm-8,
 	.node-type-news .section-cedar-shed .col-sm-8  {
 		width: 100%;
 	}
-	
+
 	.page-node-61 .sliders .carousel-caption{
 		left: 0 !important;
 	}
-	
+
 	.page-node-61 .sliders{
 		min-height: 210px !important;
 	}
-	
+
 	.page-header{
 		padding: 0;
 		    margin-top: 0;
@@ -1824,7 +1829,7 @@ ol.inline.commerce-checkout-progress li.active{
     	top: 50px;
     	right: 60px;
 	}
-	
+
 	#node-61 .field-name-body p, #block-webform-client-block-62 h2{
 		font-size: 16px;
 	}
@@ -1839,7 +1844,7 @@ ol.inline.commerce-checkout-progress li.active{
 		    right: 0;
 		    background: #9BC22F;
 	}
-	
+
     .sliders .carousel {
         min-height: 280px;
     }
@@ -1849,35 +1854,35 @@ ol.inline.commerce-checkout-progress li.active{
     .sliders .carousel-caption, .sliders .carousel-caption h3 {
         /*font-size: 26px;*/
     }
-	
+
 	#block-block-10{
 		font-size: 16px;
 	}
-	
+
 	.view-accessories{
 	    margin: auto;
 	    width: 426px;
 	}
-	
+
 	.view-taxonomy-term .views-row {
 	    /* margin-right: 20px !important; */
 		width: 50%;
 	}
-	
+
 	div.messages.commerce-add-to-cart-confirmation{
 		left: 15%;
 		margin-left: 0 !important;
 	}
-	
+
 	.sliders .carousel-caption {
 	    background: url("images/shadow.png") no-repeat;
 	    background-size: 100% 100%;
 	}
-	
+
 	.page-node-61 .section-cedar-shed{
 		margin-bottom: 50px;
 	}
-	
+
 	#block-block-11 .news .wrapper{
 		background-position: center;
 	}
@@ -1890,7 +1895,7 @@ ol.inline.commerce-checkout-progress li.active{
 	.view-taxonomy-term .views-field-field-images a{
 		height: auto !important;
 	}
-	
+
     .header {
         padding: 0px 15px;
     }
@@ -1904,9 +1909,9 @@ ol.inline.commerce-checkout-progress li.active{
     .header .checkout {
         margin-bottom: 15px;
     	float: left;
-	}	
+	}
     .header .contact-info {
-        
+
     }
     #main-navigation > ul{
         padding: 10px 0;
@@ -1940,47 +1945,47 @@ ol.inline.commerce-checkout-progress li.active{
     footer .copyright {
         text-align: center;
     }
-	
+
 	#block-block-10 {
 	    margin-top: 0;
 	}
-	
+
 	.view-taxonomy-term .views-row{
 		width: 100%;
 		max-width: none !important;
 	}
-	
+
 	.view-taxonomy-term .views-field-title{
 		height: auto !important;
 	}
-	
+
 	.view-taxonomy-term .views-field-body{
 		min-height: 0 !important;
 	}
-	
+
 	.page-node .node .spec .title_this{
 		letter-spacing: 2px !important;
 	}
-	
+
 	.bigimage{
 		width: inherit !important;
 		height: inherit !important;
 	}
-	
+
 	div.messages.commerce-add-to-cart-confirmation{
 		left: 0;
 		margin-left: 0 !important;
 		width: 100%;
 	}
-	
+
 	.sliders .carousel{
 		background: none;
 	}
-	
+
 	.page-node-61 .sliders {
 	    min-height: 300px !important;
 	}
-	
+
 	.video{
 		background: none;
 	}
@@ -1990,11 +1995,11 @@ ol.inline.commerce-checkout-progress li.active{
 	#block-views-block-category-block .views-row{
 		width: 290px !important;
 	}
-	
+
 	#block-views-block-category-block .views-row .field-content{
 		font-size: 30px;
 	}
-	
+
 	div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper .button{
 		float: none !important;
 		margin: 10px auto !important;
@@ -2005,38 +2010,38 @@ ol.inline.commerce-checkout-progress li.active{
 	.navbar-btn{
 		width: 150px;
 	}
-	
+
 	.header .contact-info{
 		padding-top: 9px;
 	}
-	
+
 	.header .contact-info .phones-number, #main-navigation a{
 		font-size: 12px;
 	}
-	
+
 	.header .contact-info .phones-number{
 		width: 100%;
 		margin-right: 0;
 	}
-	
+
 	.mobile_logo {
 	    margin: 0 !important;
 	}
-	
+
 	.header .main-menu .navbar-modern {
 	    float: right !important;
 	}
-	
+
 	#block-block-19 img{
 		width: 45px !important;
 		height: 45px !important;
 	}
-	
+
 	.header .checkout{
 		right: 80px !important;
 		    top: 30px !important;
 	}
-	
+
 	.header .checkout .count{
 	    width: 20px;
 	    height: 20px;
@@ -2044,11 +2049,11 @@ ol.inline.commerce-checkout-progress li.active{
 	    line-height: 24px;
 	    top: 35px !important;
 	}
-	
+
 	.mobile_logo{
 		width: 260px !important;
 	}
-	
+
 	#main-navigation{
 		width: 300px !important;
 		position: absolute;
@@ -2069,7 +2074,7 @@ ol.inline.commerce-checkout-progress li.active{
     .section-store .btn-news {
         margin-top: 0px;
     }
-	
+
 	.section-box .box {
 	    width: 100%;
 	}
@@ -2077,67 +2082,67 @@ ol.inline.commerce-checkout-progress li.active{
 	.jcarousel-skin-default{
 		width: 100% !important;
 	}
-	
+
 	.commerce-add-to-cart .entity-commerce-product{
 		min-width: 0px;
-	
+
 	}
-	
+
 	.commerce-product-title{
 		width: 100%;
 	}
-	
+
 	.tabcontent .form-type-checkbox .field-name-commerce-price{
 		float: left;
 		    margin-left: 10px;
 	}
-	
+
 	.commerce-add-to-cart .shipping{
 		float: left;
 	    margin-top: 0;
 	    margin-bottom: 15px;
 	}
-	
+
 	.tab_c{
 		min-width: 0;
 		    padding: 8px;
 	}
-	
+
 	.view-accessories-node .views-row{
 		width: 290px;
 		margin-left: 0;
 		margin-right: 0;
 	}
-	
+
 	.view-accessories{
 		width: 290px;
 	}
-	
+
 	.view-accessories-node .views-field-title, .view-accessories-node .views-field-field-image-accessories,
 	.view-accessories-node .views-field-body, .view-accessories-node .views-field-nid{
 		width: 100%;
 		float: none;
 	}
-	
+
 	.view-accessories-node .views-field-body .field-content{
 		min-height: 0;
 		border: none;
 		padding: 0;
 	}
-	
+
 	.view-accessories-node .views-row,
 	.view-accessories-node .views-field-body{
 		height: auto;
 	}
-	
+
 	.page-node-61 .sliders {
 	    min-height: 210px !important;
 	}
-	
+
 	#block-block-10{
 		margin-top: 15px !important;
 	}
-	
+
 	#block-block-10 .col-sm-6{
 		width: 100% !important;
 	}
@@ -2150,7 +2155,7 @@ ol.inline.commerce-checkout-progress li.active{
 /** custom viet*/
 .front .node-webform header{
 	display: none;
-	
+
 }
 
 .page-node .node .field-label {
@@ -2158,7 +2163,7 @@ ol.inline.commerce-checkout-progress li.active{
 	margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 4px;
-    font-weight: 400;	
+    font-weight: 400;
 }
 
 .page-node .node .field-name-field-recommended-accessories- .field-label{
@@ -2177,12 +2182,12 @@ ol.inline.commerce-checkout-progress li.active{
 	clear: both;
 	width: 100%;
 	float: none;
-	
+
 }
 
 .tab_c.active{
 	background: #414486;
-	
+
 }
 .tab_content{
 	background: #414486;
@@ -2192,7 +2197,7 @@ ol.inline.commerce-checkout-progress li.active{
 }
 .bigimage{
     width: 580px;
-    height: 380px;	
+    height: 380px;
 }
 .bigimage img{
 	    margin: auto;
@@ -2203,8 +2208,8 @@ ol.inline.commerce-checkout-progress li.active{
         margin: 0 5px;
 }
 .jcarousel-skin-default .jcarousel-clip-horizontal{
-	 width: auto; 
-	
+	 width: auto;
+
 }
 .jcarousel-skin-default .jcarousel-item img{
 	width: 100%;
@@ -2220,7 +2225,7 @@ ol.inline.commerce-checkout-progress li.active{
 .jcarousel-skin-default .jcarousel-container-horizontal{
 	width: 100%;
 	height: auto;
-	
+
 }
 
 .jcarousel-clip ul{
@@ -2232,29 +2237,29 @@ ol.inline.commerce-checkout-progress li.active{
 .field-name-field-images .jcarousel-next,
 .field-name-field-images .jcarousel-prev{
 	/*display: none !important;*/
-	
+
 }
 .headernode{
 	width: 100%;
 	clear: both;
 	float: left;
-    margin-bottom: 40px;	
+    margin-bottom: 40px;
 }
 .sharethis{
 	float: left;
 	max-width: 200px;
-	
-	
+
+
 }
 .sharethis a{
 	float: left;
 	margin-right: 10px;
-	
+
 }
 .headernode .small{
 	float: left;
 	width: 100%;
-	clear: both;	
+	clear: both;
     font-size: 18px;
     font-weight: 400;
 }
@@ -2285,7 +2290,7 @@ ol.inline.commerce-checkout-progress li.active{
 .not-front #block-block-9{
 	margin-top: 30px;
 	margin-bottom: 40px;
-	
+
 }
 
 .not-front .footer{
@@ -2299,11 +2304,11 @@ ol.inline.commerce-checkout-progress li.active{
 
 .field-label-inline .field-label, .field-label-inline .field-items{
 	max-width: 100%;
-	
+
 }
 .field-name-field-gallery-image{
-	
-	
+
+
 }
 .field-name-field-gallery-image .field-item{
 	margin-right: 20px;
@@ -2317,7 +2322,7 @@ ol.inline.commerce-checkout-progress li.active{
 	margin-bottom: 50px;
     border-bottom: 1px solid;
        padding-bottom: 30px;
-	
+
 }
 .view-news .views-field-field-new-image{
 	/*width: 300px;
@@ -2342,7 +2347,7 @@ ol.inline.commerce-checkout-progress li.active{
     padding: 5px 15px;
     text-align: left;
     letter-spacing: 4px;
-	
+
 }
 
 #webform-client-form-270 .webform-submit {
@@ -2356,7 +2361,7 @@ ol.inline.commerce-checkout-progress li.active{
 
 .field-name-field-specifications{
 	margin-top: 40px;
-	
+
 }
 .node-type-product .field-name-body {
 	width: 100%;
@@ -2386,13 +2391,13 @@ ol.inline.commerce-checkout-progress li.active{
 	clear: both;
 	margin-top: 12px;
 	float: none;
-	
+
 }
 @media only screen and (min-width : 1200px){
 	.page-accessories .container{
-		width: 1212px;	
-		
-	}	
+		width: 1212px;
+
+	}
 	.node-type-product .first-node{
 		/*width: 45%;
 		margin-right: 30px;*/
@@ -2408,7 +2413,7 @@ ol.inline.commerce-checkout-progress li.active{
   Bootstrap Carousel Fade Transition (for Bootstrap 3.3.x)
   CSS from:       http://codepen.io/transportedman/pen/NPWRGq
   and:            http://stackoverflow.com/questions/18548731/bootstrap-3-carousel-fading-to-new-slide-instead-of-sliding-to-new-slide
-  Inspired from:  http://codepen.io/Rowno/pen/Afykb 
+  Inspired from:  http://codepen.io/Rowno/pen/Afykb
 */
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -2494,7 +2499,7 @@ ol.inline.commerce-checkout-progress li.active{
 
 
 .not-front #cboxContent .node{
-	
+
 	margin-top: 0px;
 }
 .page-node .node .spec .field-label ,.page-node .node .spec .field , .page-node .node .spec .field a{
@@ -2514,58 +2519,58 @@ ol.inline.commerce-checkout-progress li.active{
 	    margin: 50px 0px 25px;
 }
 
-.node-type-product .node .spec p , 
+.node-type-product .node .spec p ,
 .node-type-product .node .spec a{
 	margin-bottom: 0px;
 	color: #fff;
 	font-size: 18px;
-	
+
 }
 .page-node .node .spec .left{
 	width: 285px;
 	    margin-bottom: 10px;
 	float:left;
 	margin-right: 10px;
-	
+
 }
 .page-node .node .spec .right{
 	float: right;
 	width: 285px;
-	
+
 }
 .page-node .node .spec .field{
 	color: #fff;
 	padding-left: 85px;
 	padding-top: 15px;
-	padding-bottom: 10px; 
+	padding-bottom: 10px;
 	padding-right: 5px;
 	background-position: 10px 15px;
 }
 .field-name-field-dimensions {
-	background: url('images/icon-dimensions.png') left center no-repeat #7ca524; 
-	
+	background: url('images/icon-dimensions.png') left center no-repeat #7ca524;
+
 }
 .field-name-field-roof{
-	background: url('images/icon-roof.png') left center no-repeat #7ca524; 
-	
+	background: url('images/icon-roof.png') left center no-repeat #7ca524;
+
 }
 .field-name-field-window{
-	background: url('images/icon-window.png') left center no-repeat #7ca524; 
-	
+	background: url('images/icon-window.png') left center no-repeat #7ca524;
+
 }
 .field-name-field-floor{
-	background: url('images/icon-floor.png') left center no-repeat #7ca524; 
-	
+	background: url('images/icon-floor.png') left center no-repeat #7ca524;
+
 }
 .field-name-field-other-features{
-	background: url('images/icon-features.png') left center no-repeat #7ca524; 
-	
+	background: url('images/icon-features.png') left center no-repeat #7ca524;
+
 }
 .field-name-field-dimensions,
 .field-name-field-roof,
 .field-name-field-floor {
 	margin-bottom: 10px;
-	
+
 }
 .node-type-product .page-header{
 	display: none;
@@ -2581,7 +2586,7 @@ ol.inline.commerce-checkout-progress li.active{
 }
 .page-node-61 .sliders{
 	min-height: 388px;
-	
+
 }
 
 .page-node-61 .sliders img{
@@ -2600,7 +2605,7 @@ ol.inline.commerce-checkout-progress li.active{
 }
 
 .page-node-61 .sliders .carousel-caption{
-	
+
 	left: 274px;
 }
 #block-block-18 {
@@ -2647,9 +2652,9 @@ ol.inline.commerce-checkout-progress li.active{
 	width: 100%;
 	clear: both;
 	float: left;
-	
+
 	text-align: right;
-	
+
 }
 
 .views-field-sharethis .field-content{
@@ -2678,9 +2683,9 @@ ol.inline.commerce-checkout-progress li.active{
 @media only screen and (min-width : 1200px){
 	.views-label-sharethis{
 		min-width: 395px;
-		
+
 	}
-	
+
 	.sharethis-wrapper{
 	    min-width: 580px;
 	    float: left;
@@ -2689,7 +2694,7 @@ ol.inline.commerce-checkout-progress li.active{
 	.not-front #block-system-main{
 		padding: 0 15px;
 	}
-	
+
 	.page-node-61 #block-system-main, .page-accessories #block-system-main{
 		padding: 0;
 	}
@@ -2699,7 +2704,7 @@ ol.inline.commerce-checkout-progress li.active{
 	    z-index: 99;
 	    width: 100%;
 	}
-	
+
 	.content_site{
 		padding-top: 103px;
 	}
@@ -2750,12 +2755,12 @@ ol.inline.commerce-checkout-progress li.active{
 	margin-bottom: 5px;
 }
 .view-gazebos .views-field-field-image{
-	
+
 	margin-bottom: 10px;
 }
 
 .view-taxonomy-term .views-field-title{
-	
+
 }
 .view-taxonomy-term .views-row{
 	border: 1px solid #414486;
@@ -2813,8 +2818,8 @@ ol.inline.commerce-checkout-progress li.active{
 	display: none;
 }
 .image-slide-big,.image-slide-mobile{
-	
-	
+
+
 }
 .fixed{
 	position: fixed;
@@ -2822,21 +2827,21 @@ ol.inline.commerce-checkout-progress li.active{
 	top:0px;
 	left:0px;
 	z-index: 9999;
-	
+
 }
 
 @media only screen and (min-width : 767px){
-	
-	
+
+
 }
 @media only screen and (max-width : 1280px){
 	.views-label-sharethis {
     	min-width: 325px;
 	}
-	
+
 	.views-field-sharethis{
 		margin-top: 10px;
-		
+
 	}
 	.page-node .node .spec .right{
 		/* margin-top:10px; */
@@ -2848,11 +2853,11 @@ ol.inline.commerce-checkout-progress li.active{
 		margin:0px;
 		height:500px;
 	}
-	
+
 	.page-node .node .spec .right .field{
 		height: auto;
 	}
-	
+
 	.bigimage{
 		max-width: 100%;
 	}
@@ -2862,29 +2867,29 @@ ol.inline.commerce-checkout-progress li.active{
 	.mobile-hide{
 		display: none !important;
 	}
-	
+
 	.carousel-caption br{
 		display: none;
 	}
-	
+
 	td{
 		white-space: inherit !important;
 	}
-	
+
 	.section-box,
 	#block-block-13,
 	.contact-info,
 	#block-block-16{
 		display: none;
-		
+
 	}
 	.image-slide-big{
 		display: none;
-	}	
+	}
 	.image-slide-mobile{
 		display: block;
 	}
-	
+
 	.main-menu{
 		padding-top: 20px;
 		    padding-bottom: 10px;
@@ -2907,7 +2912,7 @@ ol.inline.commerce-checkout-progress li.active{
 		float: right;
 	}
 	.header .main-menu .navbar-modern{
-		
+
 		float: left;
 	}
 	.logo{
@@ -2923,7 +2928,7 @@ ol.inline.commerce-checkout-progress li.active{
 	}
 	#block-block-20 img{
 		max-width: 100%;
-		
+
 	}
 	.dropdown-menu{
 		display: block;
@@ -2934,7 +2939,7 @@ ol.inline.commerce-checkout-progress li.active{
 	}
 	#main-navigation a{
 		color: #fff;
-		
+
 	}
 	#main-navigation > ul > li{
 		margin: 0px;
@@ -2942,11 +2947,11 @@ ol.inline.commerce-checkout-progress li.active{
 		width: 100%;
 		clear: both;
 	}
-	
+
 	#main-navigation > ul > li.dropdown{
 		background: url("images/arrow-dropdown.png") 95% center no-repeat;
 	}
-	
+
 	#main-navigation > ul > li a{
 		font-size: 28px;
 		padding-left: 20px;
@@ -2969,7 +2974,7 @@ ol.inline.commerce-checkout-progress li.active{
 		position: absolute;
 		width: 300px;
 		z-index: 9999;
-		
+
 	}
 	#main-navigation a:hover{
 		background: none;
@@ -2987,7 +2992,7 @@ ol.inline.commerce-checkout-progress li.active{
 	}
 	#main-navigation a{
 		line-height: 60px;
-		
+
 	}
 
 	#block-block-10 .col-sm-6{
@@ -3008,7 +3013,7 @@ ol.inline.commerce-checkout-progress li.active{
 	}
 	#block-block-21{
 		padding: 0px 0px 10px;
-		
+
 	}
 	#block-block-10{
 		padding-top: 20px;
@@ -3033,26 +3038,26 @@ ol.inline.commerce-checkout-progress li.active{
 	    background: url("images/shadow.png") no-repeat;
 	    background-size: 100% 100%;
 	}
-	
+
 	.sliders .carousel-caption h3, .sliders .carousel-caption p{
 		text-align: center;
 		font-size: 29px;
 		line-height: 34px;
 	}
-	
+
 	.row{
 		margin: 0;
 	}
-	
+
 	.front .cedar-shed-content p{
 		/*font-size: 24px;*/
 		text-align: center;
 	}
-	
+
 	#block-block-11 p{
 		font-size: 24px;
 	}
-	
+
 	#block-block-11 .wrapper{
 		width: 320px;
 		margin: auto;
@@ -3061,7 +3066,7 @@ ol.inline.commerce-checkout-progress li.active{
 		-webkit-flex-flow: column;
 		flex-flow: column;
 	}
-	
+
 	#block-block-11 img{
 		width: 237px;
 		    margin: auto;
@@ -3071,7 +3076,7 @@ ol.inline.commerce-checkout-progress li.active{
 			 -webkit-order: 1;
 			 order: 1;
 	}
-	
+
 	#block-block-11 .btn{
 		font-size: 28px;
 	-webkit-box-ordinal-group: 2;
@@ -3081,51 +3086,51 @@ ol.inline.commerce-checkout-progress li.active{
 	 order: 2;
 		     margin: 35px 0 55px;
 	}
-	
+
 	.header .checkout #block-block-19 .count {
 	    right: -5px;
 	}
-	
+
 	.sestion-contact h2.title{
 		font-size: 31px;
 	    margin-top: 80px;
 	    margin-bottom: 40px;
 	}
-	
+
 	.sestion-contact .form-enquiry .form-group {
 	    margin-bottom: 15px;
 	}
-	
+
 	input[type="text"], input[type="email"], input[type="search"], input[type="password"], input[type="tel"], textarea, .form-control{
 		font-size: 14px;
 		    padding: 10px;
 	}
-	
+
 	.webform-component-checkboxes label{
 		font-size: 24px;
 	}
-	
+
 	.front .webform-component-checkboxes label {
 		font-size: 18px;
 		line-height: 28px;
 		text-indent: 5px;
 	}
-	
+
 	.webform-client-form .webform-submit{
 		font-size: 25px;
 	}
-	
+
 	footer .container{
 		padding: 0;
 	}
-	
+
 	.front .content_site{
 		display: -webkit-flex;
 		display: flex;
 		-webkit-flex-flow: column;
 		flex-flow: column;
 	}
-	
+
 	.front .sliders{
 		-webkit-box-ordinal-group: 1;
 		 -moz-box-ordinal-group: 1;
@@ -3133,7 +3138,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 -webkit-order: 1;
 		 order: 1;
 	}
-	
+
 	.front .section-box{
 		-webkit-box-ordinal-group: 2;
 		 -moz-box-ordinal-group: 2;
@@ -3141,7 +3146,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 -webkit-order: 2;
 		 order: 2;
 	}
-	
+
 	.front .section-cedar-shed{
 		-webkit-box-ordinal-group: 3;
 		 -moz-box-ordinal-group: 3;
@@ -3150,7 +3155,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 order: 3;
 		 padding-top: 0;
 	}
-	
+
 	.front .section-store{
 		-webkit-box-ordinal-group: 4;
 		 -moz-box-ordinal-group: 4;
@@ -3158,7 +3163,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 -webkit-order: 4;
 		 order: 4;
 	}
-	
+
 	.front .section-gallery{
 		-webkit-box-ordinal-group: 6;
 		 -moz-box-ordinal-group: 6;
@@ -3167,7 +3172,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 order: 6;
 		 background: none;
 	}
-	
+
 	.front .sestion-contact{
 		-webkit-box-ordinal-group: 5;
 		 -moz-box-ordinal-group: 5;
@@ -3175,7 +3180,7 @@ ol.inline.commerce-checkout-progress li.active{
 		 -webkit-order: 5;
 		 order: 5;
 	}
-	
+
 	.front .section-accreditations{
 		-webkit-box-ordinal-group: 7;
 		 -moz-box-ordinal-group: 7;
@@ -3183,62 +3188,62 @@ ol.inline.commerce-checkout-progress li.active{
 		 -webkit-order: 7;
 		 order: 7;
 	}
-	
+
 	.front .section-gallery .title{
 		display: none;
 	}
-	
+
 	.front .section-gallery .btn-gallery {
    	 	margin: 50px 0px 0px;
 	}
-	
+
 	.bigimage img{
 		margin: 0;
 		max-width: 290px;
 	}
-	
+
 	.node-type-product .col-sm-12,
 	.node-type-product .col-xs-12{
 		padding-left: 0;
 		padding-right: 0;
 	}
-	
+
 	.node-type-product .jcarousel-skin-default{
 		/* display: none; */
 	}
-	
+
 	.field-name-field-gallery-image .field-item,
 	.field-name-field-gallery-image .field-item img{
 		width: 100%;
 	}
-	
+
 	#block-block-21 a, #block-block-21 a:hover{
 		color: #FFF;
 		text-decoration: none !important;
 	}
-	
+
 	.views-field-edit-delete{
 		display: none;
 	}
-	
+
 	.page-cart table th, .page-cart table td,
 	.page-checkout table th, .page-checkout table td{
 		font-size: 12px;
 	}
-	
+
 	.page-node-61 iframe{
 		height: 290px;
 		margin-bottom: 20px;
 	}
-	
+
 	.not-front .node .title{
 		font-size: 40px;
 	}
-	
+
 	.sliders .carousel {
 		min-height: 0;
 	}
-	
+
 	.node-type-product .section-cedar-shed{
 		margin-top: 0;
 	}
@@ -3248,15 +3253,15 @@ ol.inline.commerce-checkout-progress li.active{
 	.sliders .carousel-caption {
 		padding: 40px;
 	}
-	
+
 	.sliders .carousel-caption h3, .sliders .carousel-caption p{
 		font-size: 24px;
 	}
-	
+
 	.page-node .node .spec .left, .page-node .node .spec .right{
 		width: 100% !important;
 	}
-	
+
 	.front .section-gallery .btn-gallery{
 		font-size: 25px;
 		    padding-left: 120px;
@@ -3271,83 +3276,83 @@ ol.inline.commerce-checkout-progress li.active{
 			width: auto;
 			height: auto;
 	}
-	
+
 	#block-block-19 img{
 		    width: 100% !important;
 		height: auto !important;
 	}
-	
+
 	#block-block-19{
 		width: 30px;
 	}
-	
+
 	.header .checkout {
 		right: 50px !important;
 	}
-	
+
 	.header .checkout .count {
 		font-size: 14px;
 		line-height: 21px;
 		top: 24px !important;
 	}
-	
+
 	.mobile_logo{
 		    max-width: 180px;
 		margin-top: 7px !important;
 	}
-	
+
 	#block-block-11 .wrapper {
 	    width: 265px;
 	}
-	
+
 	#block-block-11 .btn {
 	    font-size: 25px;
 	}
-	
+
 	.accreditations-banner img{
 	    margin: 0;
 	    width: 260px;
 	}
-	
+
 	.section-accreditations .title{
 		letter-spacing: 2px;
 	}
-	
+
 	.sliders .carousel-caption{
 		padding: 0 40px;
 	}
-	
+
 	.carousel-caption .btn {
 	    width: 230px;
 	}
-	
+
 	.sliders .carousel-caption h3, .sliders .carousel-caption p {
 	    font-size: 18px;
 		line-height: 20px;
 	}
-	
+
 	.view-accessories-node .views-row:nth-child(3n+2){
 		margin-left: 0px;
 		margin-right: 0px;
-	
+
 	}
-	
+
 	.views-label-sharethis{
 		min-width: 0;
 	}
-	
+
 	/* .container{ */
 		/* padding: 0; */
 	/* } */
-	
+
 	/* .front .field-name-body{ */
 		/* padding: 0 15px; */
 	/* } */
 	footer.footer{
 		background: #252969;
-		
+
 	}
-	
+
 	.browse a{
 		background: #414486;
 	}
@@ -3357,7 +3362,7 @@ ol.inline.commerce-checkout-progress li.active{
 	#main-navigation {
 	    width: 260px !important;
 	}
-	
+
 	#main-navigation > ul > li a {
 	    font-size: 25px;
 	}
@@ -3420,7 +3425,7 @@ display:block;
 	.jcarousel-skin-default .jcarousel-next-horizontal{
 		display: block;
 	}
-	
+
 	.bigimage{
 		height: auto;
 		margin-bottom: 20px;

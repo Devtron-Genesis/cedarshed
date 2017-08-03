@@ -74,11 +74,11 @@
  */
  global $base_url;
  $path =  $base_url.'/'.drupal_get_path('theme', 'bootstrap_sub');
- 
+
 ?>
  <header class="header">
         <div class="row">
-         
+
           <div class="col-lg-3 col-sm-6 col-xs-6 logo">
             <?php if ($logo): ?>
 		        <a class="navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -86,16 +86,16 @@
 		        </a>
 		      <?php endif; ?>
           </div><!--  end.logo -->
-          
+
           <?php if (!empty($page['header_center'])): ?>
-          
+
           <div class="col-lg-3 col-sm-6 col-xs-6 contact-info">
             <div class="inline">
 	          <?php print render($page['header_center']); ?>
             </div>
           </div> <!-- end.contact-info -->
            <?php endif; ?>
-          
+
           <div class="col-lg-6 col-sm-12 col-xs-12 main-menu">
             <nav class="navbar navbar-modern" role="navigation">
               <div class="navbar-header">
@@ -115,21 +115,21 @@
 	          <?php endif; ?>
 	          <?php if (!empty($page['navigation'])): ?>
 	            <?php print render($page['navigation']); ?>
-	          <?php endif; ?>  
-	           
+	          <?php endif; ?>
+
               </div>
             </nav><!--end nav-->
             <?php if (!empty($page['block_mobile'])): ?>
              <div class="mobile_logo">
              	<?php print render($page['block_mobile']); ?>
              	</div>
-            <?php endif; ?> 
-            
+            <?php endif; ?>
+
             <?php if (!empty($page['checkout'])): ?>
              <div class="checkout">
              	<?php print render($page['checkout']); ?>
              	</div>
-            <?php endif; ?>            
+            <?php endif; ?>
           </div> <!-- end.main-navigation -->
         </div>
       </header><!--end header-->
@@ -137,17 +137,17 @@
         <div class="sliders">
           <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-	            <?php 
+	            <?php
 		        $count = 1;
-				$type = "slide_front"; 
-				$nodes = node_load_multiple(array(), array('type' => $type, 'status' => 1)); 
+				$type = "slide_front";
+				$nodes = node_load_multiple(array(), array('type' => $type, 'status' => 1));
 				foreach($nodes as $products):
 				$image = file_create_url($products->field_image['und'][0]['uri']);
 				$image_mobile = file_create_url($products->	field_image_mobile['und'][0]['uri']);
 				$body = $products->body['und'][0]['value'];
-				
+
 				?>
-				<div class="item <?php if($count == 1){?> active <?php }?>"> 
+				<div class="item <?php if($count == 1){?> active <?php }?>">
 					<span class="image-slide-big"><img src="<?php echo $image?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></span>
 					<span class="image-slide-mobile"><img class="active" src="<?php echo $image_mobile?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></span>
                 <div class="container">
@@ -156,9 +156,9 @@
                   </div>
                 </div>
               </div>
-				
+
 				<?php $count ++; endforeach; ?>
-	           
+
             </div>
             <a class="left carousel-control" href="#myCarousel" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"></span>
@@ -167,30 +167,30 @@
               <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
           </div>
-          <div class="video">
+          <!--<div class="video">
 	          <a class="colorbox-inline" href="?width=870&height=565&inline=true#lightboxthis"><img src="/images/video.png" /></a>
 	          <div id="lightboxthis">
-		          
+
 		          <iframe class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/c6ui4lfdu9?canonicalUrl=https%3A%2F%2Fcewdarshed.wistia.com%2Fmedias%2Fc6ui4lfdu9&canonicalTitle=cedarshed%20-%20cewdarshed" allowtransparency="true" frameborder="0" scrolling="no" width="870" height="555"></iframe>
 	          </div>
-	          
-          </div>
-          
+
+          </div>-->
+
         </div><!--  end.slider -->
         <?php if (!empty($page['topfull'])): ?>
         	<div class="section-box clearfix">
         	<?php print render($page['topfull']); ?>
         	</div>
 		<?php endif; ?>
-		
-		
+
+
         <div class="section section-cedar-shed">
           <div class="container">
             	<?php print render($page['content']); ?>
           </div>
         </div> <!-- end.cedar-shed -->
-        
-        
+
+
         <?php if (!empty($page['store'])): ?>
         <div class="section section-store">
           <div class="container">
@@ -199,37 +199,37 @@
             </div>
           </div>
         </div> <!-- end.store -->
-        <?php endif; ?> 
-        
+        <?php endif; ?>
+
          <?php if (!empty($page['gallery'])): ?>
         <div class="section section-gallery">
           <div class="container">
 	         <?php print render($page['gallery']); ?>
           </div>
         </div> <!-- end.section-gallery -->
-        <?php endif; ?> 
+        <?php endif; ?>
         <?php if (!empty($page['contact1']) || !empty($page['contact2']) ): ?>
         <div class="section sestion-contact">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 contact-socials">
-	             <?php print render($page['contact1']); ?> 
+	             <?php print render($page['contact1']); ?>
               </div>
               <div class="col-sm-6 form-enquiry">
-	              <?php print render($page['contact2']); ?> 
+	              <?php print render($page['contact2']); ?>
               </div>
             </div>
           </div>
         </div> <!-- end.section-contact -->
-        <?php endif; ?> 
-       <?php if (!empty($page['accreditations'])): ?> 
+        <?php endif; ?>
+       <?php if (!empty($page['accreditations'])): ?>
         <div class="section section-accreditations">
           <div class="container">
 	          <?php print render($page['accreditations']); ?>
           </div>
         </div>
-        <?php endif; ?> 
-        
+        <?php endif; ?>
+
       </div> <!-- end.content -->
       <footer class="footer">
         <div class="container">
