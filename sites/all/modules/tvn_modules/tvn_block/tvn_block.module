@@ -1,0 +1,61 @@
+<?php
+  function tvn_block_theme() {
+    return array(
+      
+      'block_slider' => array(
+        'variables' => array('data' => NULL),
+        'template' => 'templates/block_slider'
+      ),
+       
+      'block_scroller' => array(
+        'variables' => array('data' => NULL),
+        'template' => 'templates/block_scroller'
+      ),
+      
+    );
+  }
+
+  function tvn_block_block_info() {
+    $blocks = array();
+  
+    $blocks['block_slider']['info'] = t('Block Image Slider');
+    $blocks['block_slider']['cache'] = DRUPAL_NO_CACHE;
+    
+    $blocks['block_scroller']['info'] = t('Block scroller Slider');
+    $blocks['block_scroller']['cache'] = DRUPAL_NO_CACHE;
+    
+    return $blocks;
+  }
+
+  function tvn_block_block_view($delta = '') {
+    global $base_url;
+    include_once('model/tvn_block.inc');
+    $block = array();
+    switch ($delta) {
+      
+      case 'block_slider':
+        $path = drupal_get_path('module', 'tvn_block');
+        drupal_add_css($path . '/templates/css/nivo-slider.css');
+        drupal_add_css($path . '/templates/css/default/default.css');
+        drupal_add_js($path . '/templates/js/jquery.nivo.slider.js');
+        drupal_add_js($path . '/templates/js/jquery.nivo.call.js');
+        $data = tvn_block_get_image_slider();
+        $block['content'] = theme('block_slider', array('data' => $data));
+        return $block;
+      case 'block_scroller':
+      	$path = drupal_get_path('module', 'tvn_block');
+	  	drupal_add_js($path . '/templates/js/jquery.vticker.js');
+	  	drupal_add_js($path . '/templates/js/call.js');
+	  	
+        $data = tvn_block_get_news_slider();
+        $block['content'] = theme('block_scroller', array('data' => $data));
+        return $block;   
+        
+        
+      default:
+        break;
+    }
+  }
+
+
+

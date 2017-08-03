@@ -1,0 +1,23 @@
+<?php
+ 
+function sen_megatagview_views_pre_render(&$view) {
+	//echo   $view->name;
+
+  if( $view->name == 'taxonomy_term' || $view->name =='taxonomy_termcategory_titlelist_subcategories '){
+  	$tid =arg(2);
+  	
+	$term = taxonomy_term_load($tid);
+	$title = $term->name;
+	if(count($term->metatags)>0){
+		$title = $term->metatags['und']['title']['value'];	
+		$view->build_info['title'] = $title;
+	}
+	
+    if ( count($view->result) ){
+    	
+      $view->build_info['title'] = $title;
+    }
+    
+    
+  }
+}

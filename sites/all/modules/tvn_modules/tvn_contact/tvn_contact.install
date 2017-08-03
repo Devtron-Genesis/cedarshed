@@ -1,0 +1,82 @@
+<?php
+  function tvn_contact_schema() {
+    $schema['tvn_contact'] = array(
+      'description' => t('Contact data.'),
+      'fields' => array(
+        'id' => array(
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('Primary key'),
+        ),
+        'first_read' => array(
+          'type' => 'int',
+          'default' => 0,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('First read'),
+        ),
+        'last_read' => array(
+          'type' => 'int',
+          'default' => 0,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('Last read'),
+        ),
+        'close' => array(
+          'type' => 'int',
+          'default' => 0,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('Close'),
+        ),
+        'full_name' => array(
+          'type' => 'varchar',
+          'length' => 200,
+          'default' => '',
+          'not null' => TRUE,
+          'description' => t('Full name'),
+        ),
+        'phone' => array(
+          'type' => 'varchar',
+          'default' => '',
+          'length' => 200,
+          'not null' => TRUE,
+          'description' => t('Phone'),
+        ),
+        'mail' => array(
+          'type' => 'varchar',
+          'length' => 200,
+          'not null' => TRUE,
+          'description' => t('Mail'),
+        ),
+        'address' => array(
+          'type' => 'varchar',
+          'default' => '',
+          'length' => 200,
+          'not null' => TRUE,
+          'description' => t('Address'),
+        ),
+        'message' => array(
+          'type' => 'text',
+          'not null' => TRUE,
+          'description' => t('Message'),
+        ),
+        'close_time' => array(
+          'type' => 'int',
+          'default' => 0,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('Close time'),
+        ),
+        'timespan' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => t('Time'),
+        ),
+      ),
+      'primary key' => array('id'),
+    );
+    return $schema;
+  }

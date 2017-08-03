@@ -1,0 +1,393 @@
+<?php
+  function tvn_contact_permission() {
+    return array(
+      'administer tvn contact' => array(
+        'title' => t('View tvn contact'),
+        'restrict access' => TRUE,
+      ),
+      'delete tvn contact' => array(
+        'title' => t('Delete tvn contact'),
+        'restrict access' => TRUE,
+      ),
+      'setting tvn contact' => array(
+        'title' => t('Setting tvn contact'),
+        'restrict access' => TRUE,
+      ),
+    );
+  }
+
+  function tvn_contact_menu() {
+    $items['admin/contact'] = array(
+      'title' => t('Contact'),
+      'page callback' => '_tvn_admin_contact_page',
+      'page arguments' => array('open'),
+      'access arguments' => array('administer tvn contact'),
+      'weight' => -8
+    );
+    $items['admin/contact/opening'] = array(
+      'title' => t('Opening contact'),
+      'type' => MENU_DEFAULT_LOCAL_TASK,
+      'weight' => -10
+    );
+    $items['admin/contact/closed'] = array(
+      'title' => t('Closed contact'),
+      'page callback' => '_tvn_admin_contact_page',
+      'page arguments' => array('close'),
+      'access arguments' => array('administer tvn contact'),
+      'type' => MENU_LOCAL_TASK,
+      'weight' => 0
+    );
+    $items['admin/contact/setting'] = array(
+      'title' => t('Setting contact'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('_setting_contact_form'),
+      'access arguments' => array('setting tvn contact'),
+      'type' => MENU_LOCAL_TASK,
+      'weight' => 50
+    );
+    $items['admin/contact/view'] = array(
+      'title' => t('View contact detail'),
+      'page callback' => '_tvn_admin_contact_detail_page',
+      'access callback' => '_tvn_admin_contact_detail_perm',
+      'type' => MENU_LOCAL_TASK,
+      'weight' => 10
+    );
+    $items['admin/contact/delete/%'] = array(
+      'title' => t('Delete contact'),
+      'page callback' => '_tvn_admin_delete_contact_page',
+      'access arguments' => array('delete tvn contact'),
+      'type' => MENU_CALLBACK
+    );
+    $items['admin/contact/close/%'] = array(
+      'title' => t('Close contact'),
+      'page callback' => '_tvn_admin_close_contact_page',
+      'access arguments' => array('administer tvn contact'),
+      'type' => MENU_CALLBACK
+    );
+    $items['contact'] = array(
+      'title' => t('Contact us'),
+      'page callback' => '_tvn_contact_page',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK
+    );
+    return $items;
+  }
+
+  function tvn_contact_theme() {
+    return array(
+      'page_contact' => array(
+        'variables' => array('data' => NULL),
+        'template' => 'templates/page_contact',
+      ),
+    );
+  }
+
+  function _tvn_admin_contact_detail_perm() {
+    if (user_access('administer tvn contact') && arg(2) == 'view') {
+      return true;
+    }
+    return false;
+  }
+
+  function _tvn_admin_contact_page($type) {
+    include_once('model/tvn_contact.inc');
+    $header = array(
+      array('data' => t('Full name'), 'field' => 'c.full_name'),
+      array('data' => t('Phone'), 'field' => 'c.phone'),
+      array('data' => t('Email'), 'field' => 'c.mail'),
+      array('data' => t('Contact time'), 'field' => 'c.timespan', 'sort' => 'desc'),
+      array('data' => t('First read'), 'field' => 'f_name'),
+      array('data' => t('Last read'), 'field' => 'l_name'),
+      array('data' => t('Close contact'), 'field' => 'cl_name'),
+      array('data' => t('Close time'), 'field' => 'c.close_time'),
+      t('Operation')
+    );
+    $data = get_data_contact(0, $header, $type);
+    $rows = array();
+    foreach ($data as $key => $row) {
+      $rows[] = array(
+        $row->full_name,
+        $row->phone,
+        l($row->mail, 'mailto:' . $row->mail),
+        date('d/m/Y', $row->timespan),
+        $row->f_uid ? l($row->f_name, 'user/' . $row->f_uid) : '',
+        $row->l_uid ? l($row->l_name, 'user/' . $row->l_uid) : '',
+        $row->cl_uid ? l($row->cl_name, 'user/' . $row->cl_uid) : '',
+        $row->close_time ? date('d/m/Y', $row->close_time) : '',
+        l(t('View contact'), 'admin/contact/view/' . $row->id)
+        . ($row->cl_uid ? '' : ' | ' . l(t('Close'), 'admin/contact/close/' . $row->id))
+        . (user_access('delete tvn contact') ? ' | ' . l(t('Delete contact'), 'admin/contact/delete/' . $row->id) : '')
+      );
+    }
+    return theme('table', array('header' => $header, 'rows' => $rows)) . theme('pager') . '<div id="contact-view"></div>';
+  }
+
+  function _tvn_admin_contact_detail_page() {
+    include_once('model/tvn_contact.inc');
+    $path = drupal_get_path('module', 'tvn_contact');
+    drupal_add_css($path . '/templates/css/admin_contact.css');
+    if (arg(3) && is_numeric(arg(3))) {
+      $data = get_data_contact(arg(3))->fetchObject();
+      if ($data) {
+        if (!$data->cl_uid) {
+          update_contact($data);
+        }
+
+        $rows = array();
+        $rows[] = array(
+          array('data' => t('Name'), 'class' => 'text-bold', 'width' => 200),
+          $data->full_name
+        );
+        $rows[] = array(
+          array('data' => t('Phone'), 'class' => 'text-bold'),
+          $data->phone
+        );
+        $rows[] = array(
+          array('data' => t('Email'), 'class' => 'text-bold'),
+          l($data->mail, 'mailto:' . $data->mail),
+        );
+        $rows[] = array(
+          array('data' => t('Contact time'), 'class' => 'text-bold'),
+          date('H:i d/m/Y', $data->timespan),
+        );
+        $rows[] = array(
+          array('data' => t('Message'), 'valign' => 'top', 'class' => 'text-bold'),
+          nl2br($data->message),
+        );
+        $rows[] = array(
+          array('data' => t('First read'), 'class' => 'text-bold'),
+          $data->f_uid ? l($data->f_name, 'user/' . $data->f_uid) : '',
+        );
+        $rows[] = array(
+          array('data' => t('Last read'), 'class' => 'text-bold'),
+          $data->l_uid ? l($data->l_name, 'user/' . $data->l_uid) : '',
+        );
+        $rows[] = array(
+          array('data' => t('Close contact'), 'class' => 'text-bold'),
+          $data->cl_uid ? l($data->cl_name, 'user/' . $data->cl_uid) : '',
+        );
+        $rows[] = array(
+          array('data' => t('Close time'), 'class' => 'text-bold'),
+          $data->close_time ? date('H:i d/m/Y', $data->close_time) : '',
+        );
+        $back = $data->cl_uid ? 'admin/contact/closed' : 'admin/contact';
+        return theme('table', array('rows' => $rows)) . render(drupal_get_form('_tvn_contact_view_form', array('back' => $back, 'id' => $data->id, 'close' => $data->cl_uid)));
+      }
+    }
+    drupal_set_message(t('Could not get contact data.'), 'error');
+    drupal_goto('admin/contact');
+  }
+
+  function _tvn_contact_view_form($form, &$form_states, $data=array()) {
+    $form['contact_id'] = array(
+      '#type' => 'value',
+      '#value' => $data['id']
+    );
+    $form['back'] = array(
+      '#type' => 'value',
+      '#value' => $data['back']
+    );
+    $form['return'] = array(
+      '#type' => 'submit',
+      '#value' => t('Come back'),
+      '#submit' => array('_tvn_contact_view_form_return')
+    );
+    if (!$data['close']) {
+      $form['close'] = array(
+        '#type' => 'submit',
+        '#value' => t('Close this contact'),
+        '#submit' => array('_tvn_contact_view_form_close')
+      );
+    }
+    return $form;
+  }
+
+  function _tvn_contact_view_form_return($form, &$form_states) {
+    $form_states['redirect'] = $form_states['values']['back'];
+  }
+
+  function _tvn_contact_view_form_close($form, &$form_states) {
+    close_contact($form_states['values']['contact_id']);
+    drupal_set_message(t('Contact closed.'));
+    $form_states['redirect'] = 'admin/contact';
+  }
+
+  function _tvn_admin_close_contact_page() {
+    include_once('model/tvn_contact.inc');
+    if (arg(3) && is_numeric(arg(3))) {
+      $data = get_data_contact(arg(3))->fetchObject();
+      if ($data && !$data->cl_uid) {
+        close_contact($data->id);
+        drupal_set_message(t('Contact closed.'));
+        drupal_goto('admin/contact');
+      }
+    }
+    drupal_set_message(t('Could not get contact data.'), 'error');
+    drupal_goto('admin/contact');
+  }
+
+  function _tvn_admin_delete_contact_page() {
+    include_once('model/tvn_contact.inc');
+    if (arg(3) && is_numeric(arg(3))) {
+      $data = get_data_contact(arg(3))->fetchObject();
+      if ($data) {
+        return render(drupal_get_form('contact_delete_confirm', $data));
+      }
+    }
+    drupal_set_message(t('Could not get contact data.'), 'error');
+    drupal_goto('admin/contact');
+  }
+
+  function contact_delete_confirm($form, &$form_state, $data) {
+    include_once('model/tvn_contact.inc');
+    $str = '';
+    $str .= ($data->full_name) ? '<p>' . $data->full_name . '</p>' : '';
+    $str .= ($data->phone) ? '<p>' . $data->phone . '</p>' : '';
+    $str .= '<p>' . $data->mail . '</p>';
+    $str .= '<p>' . date('d/m/Y', $data->timespan) . '</p>';
+    $str .= '<p>' . nl2br($data->message) . '</p>';
+    $form['contact_id'] = array(
+      '#type' => 'hidden',
+      '#value' => $data->id,
+      '#prefix' => '<ul><li>',
+      '#suffix' => $str . "</li></ul>\n",
+    );
+    $back = $data->cl_uid ? 'admin/contact/closed' : 'admin/contact';
+    $form['back'] = array(
+      '#type' => 'value',
+      '#value' => $back
+    );
+    $form['#submit'][] = 'contact_delete_confirm_submit';
+    return confirm_form($form,
+                        t('Are you sure you want to delete this contact?'),
+                        $back, t('This action cannot be undone.'),
+                        t('Delete'), t('Cancel'));
+  }
+
+  function contact_delete_confirm_submit($form, &$form_state) {
+    include_once('model/tvn_contact.inc');
+    if ($form_state['values']['confirm']) {
+      delete_contact($form_state['values']['contact_id']);
+      drupal_set_message(t('Contact deleted.'));
+    }
+    $form_state['redirect'] = $form_state['values']['back'];
+  }
+
+  function _tvn_contact_page() {
+    include_once('model/tvn_contact.inc');
+    $path = drupal_get_path('module', 'tvn_contact');
+    drupal_add_css($path . '/templates/css/contact.css');
+    drupal_add_js($path . '/templates/js/contact.js');
+    $data = array();
+    return theme('page_contact', array('data' => $data));
+  }
+
+  function tvn_contact_form() {
+    $form['name'] = array(
+      '#title' => t('Full name'),
+      '#type' => 'textfield',
+      '#required' => true
+    );
+    $form['phone'] = array(
+      '#title' => t('Phone'),
+      '#type' => 'textfield',
+      '#maxlength' => 15
+    );
+    $form['mail'] = array(
+      '#title' => t('Email'),
+      '#type' => 'textfield',
+      '#required' => true
+    );
+    $form['message'] = array(
+      '#title' => t('Message'),
+      '#type' => 'textarea',
+      '#description' => t('Message must be less than 500 characters.') . '<span id="message-length">' . ($_POST
+        ? strlen($_POST['message']) : 0) . '</span><div class="clearthis"></div>',
+      '#required' => true
+    );
+    $form['submit'] = array(
+      '#value' => t('Send contact'),
+      '#type' => 'submit'
+    );
+    return $form;
+  }
+
+  function tvn_contact_form_validate($form, &$form_state) {
+    if ($form_state['values']['name'] == '') {
+      form_set_error('name', t('You must enter your name.'));
+    }
+    if ($form_state['values']['phone'] && !is_numeric($form_state['values']['phone'])) {
+      form_set_error('phone', t('Invalid phone.'));
+    }
+    if ($form_state['values']['phone'] && strlen($form_state['values']['phone']) > 15) {
+      form_set_error('phone', t('Phone must be least than 15.'));
+    }
+    if ($form_state['values']['mail'] == '') {
+      form_set_error('mail', t('You must enter your mail.'));
+    }
+    if ($form_state['values']['mail'] && $error = user_validate_mail($form_state['values']['mail'])) {
+      form_set_error('mail', $error);
+    }
+    if ($form_state['values']['message'] == '') {
+      form_set_error('message', t('You must enter your message.'));
+    }
+    if (strlen($form_state['values']['message']) > 500) {
+      form_set_error('message', t('Message must be less than 500 characters.'));
+    }
+  }
+
+  function tvn_contact_form_submit($form, &$form_state) {
+    include_once('model/tvn_contact.inc');
+    $id = insert_contact($form_state['values']['name'], $form_state['values']['phone'], $form_state['values']['mail'], $form_state['values']['message']);
+    $form_state['values']['id'] = $id;
+    drupal_mail('tvn_contact', 'confirm_contact', $form_state['values']['mail'], language_default(), array(), variable_get('site_mail'));
+    drupal_mail('tvn_contact', 'notify_contact', variable_get('site_mail'), language_default(), $form_state['values'], $form_state['values']['mail']);
+    drupal_set_message(t('Send contact successfully.'));
+  }
+
+  function tvn_contact_mail($key, &$message, $params) {
+    switch ($key) {
+      case 'confirm_contact':
+        $message['subject'] = t('Confirm from @site_name', array('@site_name' => variable_get('site_name')));
+        $message['body'][] = t('Dear,');
+        $message['body'][] = t('This is a confirm email that you have just sent us new contact.');
+        $message['body'][] = t('We will reply or call soon.');
+        $message['body'][] = t('Thanks again for that.');
+        break;
+      case 'notify_contact':
+        $message['subject'] = t('Contact from @mail', array('@mail' => $params['mail']));
+        $message['body'][] = t('Dear Administrator,');
+        $message['body'][] = t('This is a notification that @site_name has a new contact.');
+        if ($params['name']) {
+          $message['body'][] = t('Full name: @full_name', array('@full_name' => $params['name']));
+        }
+        if ($params['phone']) {
+          $message['body'][] = t('Phone: @phone', array('@phone' => $params['phone']));
+        }
+        if ($params['mail']) {
+          $message['body'][] = t('Mail: @mail', array('@mail' => $params['mail']));
+        }
+        if ($params['message']) {
+          $message['body'][] = t('Message: @message', array('@message' => nl2br($params['message'])));
+        }
+        $message['body'][] = t('Please check it soon.');
+        break;
+    }
+  }
+
+  function _setting_contact_form() {
+    $form['contact_info'] = array(
+      '#type' => 'text_format',
+      '#title' => t('Contact info'),
+      '#default_value' => variable_get('contact_info', '')
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Save info')
+    );
+    return $form;
+  }
+
+  function _setting_contact_form_submit($form, &$form_state) {
+    variable_set('contact_info', $form_state['values']['contact_info']['value']);
+  }

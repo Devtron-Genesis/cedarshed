@@ -1,0 +1,9 @@
+#message-length {
+  float: right;
+  color: #f00;
+  font-style: italic;
+}
+
+.clearthis {
+  clear: both;
+}

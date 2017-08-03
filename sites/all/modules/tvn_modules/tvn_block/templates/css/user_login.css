@@ -1,0 +1,96 @@
+.region-header form#tvn-login-form label{
+    width: 150px;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.region-header form#tvn-login-form input{
+    width: 140px;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.region-header form#tvn-login-form .form-type-checkbox{
+    margin-left: 156px;
+}
+.region-header form#tvn-login-form .form-type-checkbox input, .region-header form#tvn-login-form .form-type-checkbox label{
+    width: auto;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+.region-header form#tvn-login-form input#edit-submit{
+    margin-left: 156px;
+    width: 100px;
+}
+
+.region-header a#login_exit{
+    background: url("../images/close.png") no-repeat scroll left center transparent;
+    display: block;
+    width: 14px;
+    height: 14px;
+}
+
+.region-header ul#login_menu{
+    list-style: none;
+}
+
+.region-header ul#login_menu li{
+    width: auto;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    margin-left: 20px;
+    position: relative;
+
+}
+.region-header ul#login_menu li#hello{
+    height: 50px;
+}
+
+.region-header ul#login_menu li:hover ul#login_menu_sub{
+    display: block;
+}
+
+.region-header ul#login_menu li ul#login_menu_sub{
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    width: 150px;
+    list-style: none;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 2px #CCCCCC;
+    padding: 10px;
+}
+
+.region-header ul#login_menu li ul#login_menu_sub li{
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.region-header ul#login_menu li ul#login_menu_sub li a:hover{
+    font-weight: bold;
+}
+
+.region-header ul#login_menu li a{
+    color: #393732;
+    text-decoration: none;
+}
+
+.gbmai {
+    background: url("../images/j_e6a6aca6.png") repeat scroll -30px -25px transparent;
+    font-size: 0;
+    height: 4px;
+    line-height: 0;
+    opacity: 0.8;
+    position: absolute;
+    width: 7px;
+    top: 5px;
+    right: -12px;
+}

@@ -1,0 +1,54 @@
+<?php
+  function tvn_user_theme() {
+    return array(
+	  'page_user_second_hand' => array(
+        'variables' => array('data' => NULL),
+        'template' => 'templates/page_user_second_hand'
+      ),
+	  'page_second_hand_list' => array(
+        'variables' => array('data' => NULL),
+        'template' => 'templates/page_second_hand_list'
+      ),
+    );
+  }
+  function tvn_user_menu(){
+	  
+	  
+	$items['user/%user/new-second'] = array(
+		'title' => 'New Second-hand',
+		'page callback' => '_tvn_user_new_second',
+		'page arguments' => array(1),
+		'access arguments' => array(1),
+		'access callback' => 'user_is_logged_in',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 3,
+		);
+		/*
+	$items['user/%user/second-list'] = array(
+		'title' => 'Second-hand List',
+		'page callback' => '_tvn_user_second_list',
+		'page arguments' => array(1),
+		'access arguments' => array(1),
+		'access callback' => 'user_is_logged_in',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 4,
+		);
+		*/
+    return $items;
+	}
+	function _tvn_user_new_second(){
+		global $user;
+		
+		if(arg(1)==$user->uid){
+			$data = array();
+			return theme('page_user_second_hand',array('data'=>$data));
+			}
+		else{
+		drupal_goto('user'.$user->uid.'/new-second');
+		}
+	}
+    function _tvn_user_second_list(){
+		$data = array();
+		return theme('page_second_hand_list',array('data'=>$data));
+	}
+

@@ -1,0 +1,44 @@
+<?php
+  function tvn_page_form_alter(&$form, &$form_state, $form_id) {
+	if($form_id == 'commerce_checkout_form_checkout'){
+		$form['account']['login']['mail']['#description'] = 'Already have an acount with us? <a href="/user/login">Log in</a>';
+		
+	}
+	if($form_id == 'webform_client_form_58'){
+		$value = '';
+		if (arg(0)=='node' && is_numeric(arg(1))) {
+			$value = arg(1);
+			if(isset($_GET['product'])){
+				$value = $_GET['product'];
+			}
+			$node = node_load($value);
+			$value = $node->title;
+		}
+		$form['submitted']['accessories']['#value'] = $value;
+		
+	}
+	
+  }
+  
+  
+  function tvn_page_menu(){
+	$items['loadnode'] = array(
+      'title' => t(''),
+      'page callback' => '_tvn_loadnode',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK
+    );
+    return $items;
+	}
+	function _tvn_loadnode(){
+		if(arg(1)){
+			$nid = arg(1);
+			$node = node_load($nid);
+			$view = node_view($node);
+			print drupal_render($view);
+		}
+		die;
+		
+	}
+
+

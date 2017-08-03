@@ -1,0 +1,10 @@
+name = TVN Contact
+description = "TVN Contact"
+core = 7.x
+package = TVN
+
+; Information added by drupal.org packaging script on 2011-07-13
+version = "7.x-2.2"
+core = "7.x"
+project = "TVN"
+datestamp = "1310528214"
