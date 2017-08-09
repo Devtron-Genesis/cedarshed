@@ -197,16 +197,19 @@ $path =  $base_url.'/'.drupal_get_path('theme', 'bootstrap_sub');
     <div class="section section-store">
       <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
-          <?php
+          <!-- <?php
           $count = 1;
           $nodes = $node->field_banners['und'];
           foreach($nodes as $products):
-            $image = file_create_url($products['uri']);
-          ?>
+            $item = field_collection_item_load($products['value']);
+            $image = file_create_url($item->field_banner_image['und'][0]['uri']);
+            $path = $item->field_banner_link['und'][0]['url'];
+            $target = $item->field_banner_link['und'][0]['attributes']['target'];
+          ?> -->
           <div class="item <?php if($count == 1){?> active <?php }?>">
-            <span class="image-slide-big"><img src="<?php echo $image?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></span>
+            <span class="image-slide-big"><a href="<?php echo $path;?>" target="<?php echo $target;?>"><img src="<?php echo $image?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></a></span>
           </div>
-          <?php $count ++; endforeach; ?>
+          <!-- <?php $count ++; endforeach; ?> -->
         </div>
       </div>
     </div> <!-- end.store -->
