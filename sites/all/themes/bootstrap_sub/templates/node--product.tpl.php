@@ -108,13 +108,16 @@ switch ($category) {
 <script type="text/javascript">
 	(jQuery)(function(){
 		(jQuery)('.<?php echo $active?> ').addClass('active');
-		
+
 	});
 </script>
 
 
 <div  id="node-<?php print $node->nid; ?>" class="row node">
-	<div class="col-md-6 col-xs-12 first-node">
+	<div class="related-products col-md-2">
+		<?php print render($content['field_related_products']);?>
+	</div>
+	<div class="col-md-4 col-xs-12 first-node">
 		<div class="title"><?php print $title; ?></div>
 		<?php print render($content['field_images']);?>
 		<div class="spec">
@@ -123,16 +126,14 @@ switch ($category) {
 					<?php print render($content['field_dimensions']);?>
 					<?php print render($content['field_roof']);?>
 					<?php print render($content['field_window']);?>
-					
+
 				</div>
 				<div class="right">
 					<?php print render($content['field_floor']);?>
 					<?php print render($content['field_other_features']);?>
-					
+
 				</div>
 		</div>
-		
-		
 	</div>
 	<div class="col-md-6 col-xs-12 second-node">
 		<div class="headernode">
@@ -164,7 +165,7 @@ switch ($category) {
 				<div class="tab1 tabcontent">
 					<?php print render($content['product:title']);?>
 					<?php print render($content['product:commerce_price']);?>
-					
+
 					<h3>recommended accessories:</h3>
 					<?php //print render($content['product:field_accessories']);?>
 					<?php print render($content['field_product']);?>
@@ -181,11 +182,9 @@ switch ($category) {
 			</div>
 		</div>
 		<div class="browse">
-			
+
 			<a href="<?php echo $base_url?>/gallery">browse gallery</a>
 		</div>
-		
-		
 	</div>
 </div>
 

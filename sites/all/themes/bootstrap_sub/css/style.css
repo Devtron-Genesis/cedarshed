@@ -40,7 +40,7 @@ body{
 }
 
 .not-front #wrapper{
-  background: url("images/bg_bottom.png") bottom no-repeat;
+  /*background: url("images/bg_bottom.png") bottom no-repeat;*/
 
 }
 
@@ -691,25 +691,31 @@ footer .design {
   color: #2f3272;
 }
 /*Related Product Section*/
+.field-name-field-related-products .field-label {
+  font-size: 16px!important;
+  font-weight: bold!important;
+}
 .view-id-related_products .views-field-view-node a {
   font-size: 12px;
+  padding: 5px 30px 5px;
 }
 .view-id-related_products .views-row {
   border: 1px solid #414486;
   background: #fff;
-  padding: 10px 20px;
+  padding: 3px 6px;
+  margin-bottom: 5px;
 }
 .view-id-related_products .views-field-title{
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 5px;
-  height: 60px;
+  height: 30px;
 }
 
 .view-id-related_products .views-field-field-images{
   display: inline-block;
   margin-bottom: 0px;
-  height: 220px;
+  height: 100px;
   width: 100%;
   text-align: center;
 }
@@ -728,7 +734,7 @@ footer .design {
   text-align: center;
   display: inline-block;
   margin-bottom: 0px;
-  height: 210px;
+  height: 100px;
 }
 .view-id-related_products .views-field-field-images a img{
   margin:0 auto;
@@ -2194,7 +2200,7 @@ ol.inline.commerce-checkout-progress li.active{
   margin: 0 5px;
 }
 .jcarousel-skin-default .jcarousel-clip-horizontal{
-  width: auto;
+  width: 92%;
 
 }
 .jcarousel-skin-default .jcarousel-item img{
@@ -3372,7 +3378,7 @@ ol.inline.commerce-checkout-progress li.active{
 
 @media all and (max-width:991px){
   .jcarousel-skin-default .jcarousel-clip-horizontal, .jcarousel-skin-default .jcarousel-container-horizontal, .view-video-slide .jcarousel-skin-default {
-    width: 100$ !important;
+    width: 100% !important;
 
   }
   .jcarousel-skin-default .jcarousel-container-horizontal, .jcarousel-skin-default {
