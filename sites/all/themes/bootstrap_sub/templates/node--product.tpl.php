@@ -128,7 +128,7 @@ switch ($category) {
 					<?php print render($content['field_window']);?>
 
 				</div>
-				<div class="right">
+				<div class="left">
 					<?php print render($content['field_floor']);?>
 					<?php print render($content['field_other_features']);?>
 

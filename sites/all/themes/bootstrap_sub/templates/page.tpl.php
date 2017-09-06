@@ -74,11 +74,11 @@
  */
  global $base_url;
  $path =  $base_url.'/'.drupal_get_path('theme', 'bootstrap_sub');
- 
+
 ?>
  <header class="header">
         <div class="row">
-         
+
           <div class="col-lg-3 col-sm-6 col-xs-6 logo">
             <?php if ($logo): ?>
 		        <a class="navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -86,16 +86,16 @@
 		        </a>
 		      <?php endif; ?>
           </div><!--  end.logo -->
-          
+
           <?php if (!empty($page['header_center'])): ?>
-          
+
           <div class="col-lg-3 col-sm-6 col-xs-6 contact-info">
             <div class="inline">
 	          <?php print render($page['header_center']); ?>
             </div>
           </div> <!-- end.contact-info -->
            <?php endif; ?>
-          
+
           <div class="col-lg-6 col-sm-12 col-xs-12 main-menu">
             <nav class="navbar navbar-modern" role="navigation">
               <div class="navbar-header">
@@ -115,33 +115,33 @@
 	          <?php endif; ?>
 	          <?php if (!empty($page['navigation'])): ?>
 	            <?php print render($page['navigation']); ?>
-	          <?php endif; ?>  
-	           
+	          <?php endif; ?>
+
               </div>
             </nav><!--end nav-->
-            
+
             <?php if (!empty($page['block_mobile'])): ?>
              <div class="mobile_logo">
              	<?php print render($page['block_mobile']); ?>
              	</div>
-            <?php endif; ?> 
+            <?php endif; ?>
             <?php if (!empty($page['checkout'])): ?>
              <div class="checkout">
              	<?php print render($page['checkout']); ?>
              	</div>
-            <?php endif; ?>            
+            <?php endif; ?>
           </div> <!-- end.main-navigation -->
         </div>
       </header><!--end header-->
  <div class="content_site">
-        
+
         <?php if (!empty($page['topfull'])): ?>
-        	<div class="section-box clearfix">
+        	<div class="section-box container clearfix">
         	<?php print render($page['topfull']); ?>
         	</div>
 		<?php endif; ?>
-		
-		
+
+
         <div class="section section-cedar-shed">
           <div class="container">
 	       <section<?php print $content_column_class; ?>>    <?php print $messages; ?>
@@ -153,17 +153,17 @@
       <?php endif; ?>
       <?php print render($title_suffix); ?>
             	<?php print render($page['content']); ?>
-	       </section> 	
+	       </section>
             	<?php if (!empty($page['sidebar_second'])): ?>
       <aside class="col-sm-12 col-lg-4" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
-            	
+
           </div>
         </div> <!-- end.cedar-shed -->
-        
-        
+
+
         <?php if (!empty($page['store'])): ?>
         <div class="section section-store">
           <div class="container">
@@ -172,37 +172,37 @@
             </div>
           </div>
         </div> <!-- end.store -->
-        <?php endif; ?> 
-        
+        <?php endif; ?>
+
          <?php if (!empty($page['gallery'])): ?>
         <div class="section section-gallery">
           <div class="container">
 	         <?php print render($page['gallery']); ?>
           </div>
         </div> <!-- end.section-gallery -->
-        <?php endif; ?> 
+        <?php endif; ?>
         <?php if (!empty($page['contact1']) || !empty($page['contact2']) ): ?>
         <div class="section sestion-contact">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 contact-socials">
-	             <?php print render($page['contact1']); ?> 
+	             <?php print render($page['contact1']); ?>
               </div>
               <div class="col-sm-6 form-enquiry">
-	              <?php print render($page['contact2']); ?> 
+	              <?php print render($page['contact2']); ?>
               </div>
             </div>
           </div>
         </div> <!-- end.section-contact -->
-        <?php endif; ?> 
-       <?php if (!empty($page['accreditations'])): ?> 
+        <?php endif; ?>
+       <?php if (!empty($page['accreditations'])): ?>
         <div class="section section-accreditations">
           <div class="container">
 	          <?php print render($page['accreditations']); ?>
           </div>
         </div>
-        <?php endif; ?> 
-        
+        <?php endif; ?>
+
       </div> <!-- end.content -->
       <footer class="footer">
         <div class="container">

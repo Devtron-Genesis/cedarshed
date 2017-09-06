@@ -208,6 +208,7 @@ $path =  $base_url.'/'.drupal_get_path('theme', 'bootstrap_sub');
           ?>
           <div class="item <?php if($count == 1){?> active <?php }?>">
             <span class="image-slide-big"><a href="<?php echo $path;?>" target="<?php echo $target;?>"><img src="<?php echo $image?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></a></span>
+            <span class="image-slide-mobile"><a href="<?php echo $path;?>" target="<?php echo $target;?>"><img src="<?php echo $image?>" style="width:100%" data-src="<?php if($count == 1){?>holder.js/900x500/auto/#7cbf00:#fff/text:<?php }?> " alt="First slide"></a></span>
           </div>
           <?php $count ++; endforeach; ?>
         </div>
