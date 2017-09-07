@@ -328,7 +328,7 @@ max-width:90%;
   display: inline-block;
   float: right;
   position: relative;
-  margin-right:-12px; 
+  margin-right:-12px;
 }
 .header .checkout a:hover{
   /*opacity: 0.9;*/
@@ -701,6 +701,12 @@ footer.footer {
   background: #fff url(../images/bg-footer.png) left bottom 0px no-repeat;
   background-size: cover;
 }
+.selected-colour {
+  width: 100%;
+  float: left;
+  height: 60px;
+  margin-top: 10px;
+ }
 /*Related Product Section*/
 .field-name-field-related-products .field-label {
   font-size: 16px!important;
@@ -733,7 +739,11 @@ footer.footer {
 .view-id-related_products .views-field-body p {
   font-size: 14px;
 }
-
+.view-id-related_products .views-field-field-dimensions {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
 .view-id-related_products .views-field-body{
   min-height: 160px;
 }
@@ -749,6 +759,18 @@ footer.footer {
 }
 .view-id-related_products .views-field-field-images a img{
   margin:0 auto;
+}
+.view-id-related_products .views-field-commerce-price {
+  text-align: center;
+}
+.view-id-related_products .views-field-commerce-price .views-label-commerce-price {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+.view-id-related_products .views-field-commerce-price .field-content {
+  color: #ffa800!important;
+  font-weight: bold;
 }
 .field-name-commerce-price table {
   width: 100%;
@@ -1414,7 +1436,7 @@ ol.inline.commerce-checkout-progress li.active{
   }
 
   .front .sliders {
-    min-height: 345px;
+    min-height: 340px;
   }
 
   .front{
@@ -1456,7 +1478,7 @@ ol.inline.commerce-checkout-progress li.active{
 }
 
 .section-box .box a {
- width: 220px; 
+ width: 100%;
  }
 
   #block-block-9 {
@@ -1539,7 +1561,7 @@ ol.inline.commerce-checkout-progress li.active{
   }
 
   .section-box .box a{
-    width: 200px;
+    width: 100%;
     margin: auto;
   }
 
@@ -1547,7 +1569,7 @@ ol.inline.commerce-checkout-progress li.active{
     margin-bottom: 60px;
   }
   .front .sliders {
-    min-height: 385px;
+    min-height: 360px;
   }
 
   .front .section-store {
@@ -1605,7 +1627,7 @@ margin-top:0px;
     top: -20%;
   }
 
- 
+
 }
 
 @media only screen and (min-width : 1200px) {
@@ -2346,7 +2368,7 @@ padding: 0px 25px 0px 25px;
 
 .page-node-61 .footer{
   min-height: 0;
-  
+
 }
 
 .field-label-inline .field-label, .field-label-inline .field-items{
@@ -3493,6 +3515,7 @@ footer .copyright a, footer .design a {
 .commerce-price-savings-formatter-prices-down .commerce-price-savings-formatter-price .price-amount {
   color: #ffa800!important;
 }
+
 /*@media only screen and (max-width : 1200px) {
   #main-navigation a{
   letter-spacing: 0px;

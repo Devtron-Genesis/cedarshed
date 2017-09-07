@@ -89,6 +89,9 @@ $next_nid = prev_next_nid($nid, 'next');
 $category = $node->field_categories['und'][0]['tid'];
 //echo $category;
 switch ($category) {
+    case 59:
+        $active = "box-interlock";
+        break;
     case 36:
         $active = "box-sheds";
         break;

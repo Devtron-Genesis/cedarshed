@@ -92,10 +92,3 @@ function expandMenu(){
 	});
 	//alert('aaa');
 }
-
-(function($) {
-	$(document).ready(function() {
-		$('.field-name-commerce-price .commerce-price-savings-formatter-list .price-label').text('Price Starting at:');
-		$('.field-name-commerce-price .commerce-price-savings-formatter-price .price-label').text('Price Online Starting at:');
-	});
-})(jQuery);
