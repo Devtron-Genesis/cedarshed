@@ -44,7 +44,13 @@ body{
   /*background: url("images/bg_bottom.png") bottom no-repeat;*/
 
 }
-
+div.messages.commerce-add-to-cart-confirmation .view-confirm-message-product-display {
+  width: 100%;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper {
+  position: relative;
+  width: 100%;
+}
 .page-node-61{
   background: url("images/bg-contact.jpg") no-repeat;
 }
@@ -56,7 +62,11 @@ body{
 .page-node-61 #wrapper{
   background: none;
 }
-
+.product-windows select {
+  color: #2f3272;
+  width: 100%;
+  margin-top: 10px;
+}
 img{
   max-width: 100%;
   height: auto;
@@ -225,11 +235,11 @@ h2.title {
 }
 
 .content_site {
-  min-height: 3350px;
+  /*min-height: 3350px;*/
 }
 
 .front .content_site{
-  min-height: 3558px;
+  /*min-height: 3558px;*/
 }
 
 .not-front .content_site {
@@ -238,7 +248,7 @@ h2.title {
 }
 
 .page-node-61 .content_site {
-  height: 1315px;
+  height: 1246px;
 }
 
 /*
@@ -699,7 +709,6 @@ footer .design {
 }
 footer.footer {
   background: #fff url(../images/bg-footer.png) left bottom 0px no-repeat;
-  background-size: cover;
 }
 .selected-colour {
   width: 100%;
@@ -1352,7 +1361,11 @@ ol.inline.commerce-checkout-progress li.active{
 .field-name-body p a{
   overflow-wrap: break-word;
 }
-
+@media only screen and (min-width : 1600px) {
+  footer.footer {
+    background-size: cover;
+  }
+}
 @media only screen and (min-width : 1201px) and (max-width : 1920px){
   #block-block-11 h2.title{
     color: #7CA524;
@@ -1444,11 +1457,11 @@ ol.inline.commerce-checkout-progress li.active{
   }
 
   .content_site {
-    min-height: 3280px;
+    /*min-height: 3280px;*/
   }
 
   .front .content_site {
-    min-height: 3488px;
+    /*min-height: 3488px;*/
   }
 
   .section-gallery .title{
@@ -1469,7 +1482,7 @@ ol.inline.commerce-checkout-progress li.active{
   }
 
   .content_site {
-    min-height: 3280px;
+    /*min-height: 3280px;*/
   }
 
 .not-front #block-block-9{
@@ -1548,11 +1561,11 @@ ol.inline.commerce-checkout-progress li.active{
   }
 
   .content_site {
-    min-height: 3200px;
+    /*min-height: 3200px;*/
   }
 
   .front .content_site {
-    min-height: 3408px;
+    /*min-height: 3408px;*/
   }
 
   .video{
@@ -2959,7 +2972,7 @@ padding: 0px 25px 0px 25px;
     margin-top: 15px;
   }
   .content_site{
-    min-height: 300px;
+    /*min-height: 300px;*/
   }
   #main-navigation > ul > li a{
     display: inline-block;
