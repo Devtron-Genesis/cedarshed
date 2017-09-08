@@ -117,7 +117,7 @@ switch ($category) {
 
 
 <div  id="node-<?php print $node->nid; ?>" class="row node">
-	<div class="related-products col-md-2">
+	<div class="related-products col-md-2 visible-lg visible-md visible-sm">
 		<?php print render($content['field_related_products']);?>
 	</div>
 	<div class="col-md-4 col-xs-12 first-node">

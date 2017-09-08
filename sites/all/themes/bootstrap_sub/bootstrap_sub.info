@@ -32,6 +32,7 @@ regions[page_bottom]    = 'Page bottom'
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/rwd.css
 
 scripts[] = js/jquery.matchHeight-min.js
 scripts[] = js/script.js
