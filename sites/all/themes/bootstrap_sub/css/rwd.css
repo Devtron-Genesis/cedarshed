@@ -1,7 +1,5 @@
 @media only screen and (min-width: 1600px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   footer.footer {
     background-size: cover;
   }
@@ -10,17 +8,13 @@
   }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1920px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #block-block-11 h2.title {
     color: #7CA524;
   }
 }
 @media only screen and (min-width: 1921px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .front {
     background-size: 100% 100% !important;
   }
@@ -64,9 +58,7 @@
   }
 }
 @media only screen and (max-width: 1827px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .header .checkout {
     margin-right: 0px;
   }
@@ -79,17 +71,13 @@
   }
 }
 @media only screen and (max-width: 1750px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .video {
     top: 200px;
   }
 }
 @media only screen and (max-width: 1659px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #main-navigation>ul>li {
     padding: 0 10px;
   }
@@ -117,9 +105,7 @@
   }
 }
 @media only screen and (max-width: 1611px) and (min-width: 1440px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .header .main-menu .navbar-modern {
     float: left;
   }
@@ -143,17 +129,13 @@
   }
 }
 @media only screen and (min-width: 2560px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .region.region-content {
     margin-top: 88px;
   }
 }
 @media only screen and (max-width: 1560px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .sliders .carousel-caption, .sliders .carousel-caption h3 {
     font-size: 20px;
     line-height: 28px;
@@ -163,9 +145,7 @@
   }
 }
 @media only screen and (max-width: 1440px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .section-box .box a, .section-box .box a:hover, .section-box .box a.active {
     background-size: 180px 180px;
   }
@@ -174,9 +154,7 @@
   }
 }
 @media only screen and (max-width: 1379px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   body {
     background-position: 0px -50px;
   }
@@ -228,9 +206,7 @@
   }
 }
 @media only screen and (max-width: 1024px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .node-type-product .section-cedar-shed {
     margin-top: 0px;
   }
@@ -239,9 +215,7 @@
   }
 }
 @media only screen and (min-width: 768px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .pno {
     pointer-events: none;
   }
@@ -270,9 +244,7 @@
   }
 }
 @media only screen and (min-width: 1200px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .carousel-caption .btn {
     letter-spacing: 4px;
   }
@@ -290,9 +262,7 @@
   }
 }
 @media only screen and(max-width: 1400px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   /*.front .section-cedar-shed .container,
   .front .section-store .container{
     width: 1110px;
@@ -313,9 +283,7 @@
 /* Large Devices, Wide Screens */
 
 @media only screen and (max-width: 1200px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .front .content_site {
     min-height: 0;
   }
@@ -479,9 +447,7 @@
   }
 }
 @media only screen and (max-width: 1024px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .video {
     top: 50px;
     right: 60px;
@@ -497,9 +463,7 @@
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width:992px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .video {
     position: inherit;
     text-align: center;
@@ -550,9 +514,7 @@
 .view-id-related_products .views-field-field-images a img {
   max-width: 50%;
 }
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #block-block-9 .box {
     padding: 0px;
   }
@@ -567,9 +529,7 @@
   .table-responsive {
     border: none;
   }
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .view-taxonomy-term .views-row, .view-taxonomy-term .views-field-field-images, .view-taxonomy-term .views-field-field-images a {
     height: auto !important;
   }
@@ -652,9 +612,7 @@
   }
 }
 @media only screen and (max-width: 620px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #block-views-block-category-block .views-row {
     width: 290px !important;
   }
@@ -667,9 +625,7 @@
   }
 }
 @media only screen and (max-width: 568px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .navbar-btn {
     width: 150px;
   }
@@ -719,9 +675,7 @@
 /* Extra Small Devices, Phones */
 
 @media only screen and (max-width: 480px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   footer.footer {
     padding-top: 25px;
   }
@@ -790,14 +744,10 @@
 /* Custom, iPhone Retina */
 
 @media only screen and (max-width: 320px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
 }
 @media only screen and (min-width: 1200px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .page-accessories .container {
     width: 1212px;
   }
@@ -805,9 +755,7 @@
   .node-type-product .second-node {}
 }
 @media all and (transform-3d), (-webkit-transform-3d) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .carousel-fade .carousel-inner>.item.next, .carousel-fade .carousel-inner>.item.active.right {
     opacity: 0;
     -webkit-transform: translate3d(0, 0, 0);
@@ -825,9 +773,7 @@
   }
 }
 @media only screen and (min-width: 1200px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .views-label-sharethis {
     min-width: 395px;
   }
@@ -854,14 +800,10 @@
   .tab_content {
     max-width: 100%;
   }
-  .content_site {
-    background: #d3d3d3;
-  }
+
 }
 @media only screen and (max-width: 1280px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .views-label-sharethis {
     min-width: 325px;
   }
@@ -892,9 +834,7 @@
   }
 }
 @media only screen and (max-width: 767px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .mobile-hide {
     display: none !important;
   }
@@ -1228,9 +1168,7 @@
   }
 }
 @media only screen and (max-width:568px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .sliders .carousel-caption {
     padding: 40px;
   }
@@ -1248,9 +1186,7 @@
   }
 }
 @media only screen and (max-width: 480px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .navbar-toggle, .navbar-toggle:focus, .navbar-toggle, .navbar-toggle:hover {
     background-size: cover;
     width: auto;
@@ -1313,9 +1249,7 @@
   }
 }
 @media only screen and (max-width: 360px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #main-navigation {
     width: 260px !important;
   }
@@ -1324,9 +1258,7 @@
   }
 }
 @media only screen and (max-width: 767px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   #block-views-video-slide-block {
     display: none;
   }
@@ -1335,9 +1267,7 @@
   }
 }
 @media all and (max-width:991px) {
-  .content_site {
-    background: #d3d3d3;
-  }
+
   .jcarousel-skin-default .jcarousel-clip-horizontal, .jcarousel-skin-default .jcarousel-container-horizontal, .view-video-slide .jcarousel-skin-default {
     width: 100% !important;
   }
