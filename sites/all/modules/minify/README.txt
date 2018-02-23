@@ -5,6 +5,7 @@ Description
 Minify is designed to improve the website performance.
 This module provides the mechanism to render the page using minified versions of HTML and JavaScript files. 
 Minified HTML is generated using regular expression, and JavaScript files are generated using GOOGLE Closure Compiler webservice.
+Please be aware that Closure Compiler have throttling limits. In case website have a lot of JavaScript files there might be a need to initiate minifying process a few times with one hour interval.
 Minify removes the comments and whitespace which will help to reduce the file size. 
 Smaller HTML and file size reduces the page load time and improve the website performance. 
 
@@ -16,4 +17,4 @@ Installation
      Administer > Modules
   3. Bring up the Minify configuration screens by navigating to
      Administer > Configuration > Performance
-  4. Selecting the Use Minified JavaScript files does not enough to improve performance, select Minify JavaScript files tab at top of the page to generate and manage minified JavaScript files
+  4. Selecting the Use Minified JavaScript files does not enough to improve performance, select Minify JavaScript files tab at top of the page to generate and manage minified JavaScript files.

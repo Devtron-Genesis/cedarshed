@@ -287,7 +287,7 @@ function _minify_get_post_fields($js_code) {
 function _minify_send_request($post_data) {
   if (function_exists('curl_init')) {
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, "closure-compiler.appspot.com/compile");
+    curl_setopt($curl, CURLOPT_URL, "https://closure-compiler.appspot.com/compile");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
     curl_setopt($curl, CURLOPT_POST, true);

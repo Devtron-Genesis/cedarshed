@@ -1,3 +1,8 @@
+Minify 7.x-1.5, 2017-11-16
+------------------------------
+- #2921736 Js file is not minifying in 7.x-1.4 version
+
+
 Minify 7.x-1.2, 2015-01-07
 ------------------------------
 - #2298669 Injection of new line to limit line length is removed
