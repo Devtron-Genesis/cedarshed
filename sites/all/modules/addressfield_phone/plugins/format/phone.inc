@@ -44,8 +44,6 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#type' => 'textfield',
         '#tag' => 'span',
         '#default_value' => isset($address['phone_number']) ? $address['phone_number'] : '',
-		 '#required' => true
-		  
       );
     }
     if (!$settings || isset($settings['extension'])) {
@@ -56,7 +54,6 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#type' => 'textfield',
         '#tag' => 'span',
         '#default_value' => isset($address['phone_number_extension']) ? $address['phone_number_extension'] : '',
-		  '#required' => true
       );
     }
     if (!$settings || isset($settings['mobile'])) {
@@ -67,10 +64,9 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#type' => 'textfield',
         '#tag' => 'div',
         '#default_value' => isset($address['mobile_number']) ? $address['mobile_number'] : '',
-		  '#required' => true
       );
     }
-    if (!$settings || $settings['fax']) {
+    if (!$settings || isset($settings['fax'])) {
       $format['phone_block']['fax_number'] = array(
         '#title' => t('Fax Number'),
         '#size' => 15,
@@ -78,7 +74,6 @@ function addressfield_format_phone_generate(&$format, $address, $context = array
         '#type' => 'textfield',
         '#tag' => 'div',
         '#default_value' => isset($address['fax_number']) ? $address['fax_number'] : '',
-		  '#required' => true
       );
     }
   }

@@ -1,4 +1,4 @@
-/* @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic); */
+	/* @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic); */
 
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,300);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300);
@@ -1198,12 +1198,22 @@ ol.inline.commerce-checkout-progress li.active {
 .front .node-webform header {
   display: none;
 }
-.page-node .node .field-label {
+/*.page-node .node .field-label {
   font-size: 28px;
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 4px;
   font-weight: 400;
+}*/
+.page-node .node .field-label {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    font-weight: normal;
+    padding-top: 8px;
+    width: 65%;
+
 }
 .page-node .node .field-name-field-recommended-accessories- .field-label {
   margin-bottom: 5px;
@@ -1746,4 +1756,8 @@ footer .copyright a, footer .design a {
 }
 .commerce-price-savings-formatter-prices-down .commerce-price-savings-formatter-price .price-amount {
   color: #ffa800!important;
+}
+/*-----------------------06-10-2017--------*/
+.field-name-commerce-price tbody tr td.price-amount {
+    color: #ffa800 !important;
 }
