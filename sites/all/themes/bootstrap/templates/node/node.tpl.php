@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Default theme implementation to display a node.
@@ -113,6 +112,6 @@
      <?php print $field_tags; ?>
      <?php print $links; ?>
   </footer>
-    <?php endif; ?>
+  <?php endif; ?>
   <?php print render($content['comments']); ?>
 </article>

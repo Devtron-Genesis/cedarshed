@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * The primary PHP file for the Drupal Bootstrap base theme.
@@ -16,7 +15,7 @@
  * the `./templates` folder. This is a highly automated and complex system
  * designed to only load the necessary files when a given theme hook is invoked.
  *
- * Visit this project's official documentation site https://drupal-bootstrap.org
+ * Visit this project's official documentation site, http://drupal-bootstrap.org
  * or the markdown files inside the `./docs` folder.
  *
  * @see _bootstrap_theme()
@@ -63,7 +62,7 @@ drupal_static_reset('element_info');
 /**
  * Declare various hook_*_alter() hooks.
  *
- * All hook_*_alter() implementations must live (via include) inside this file
- * so they are properly detected when drupal_alter() is invoked.
+ * hook_*_alter() implementations must live (via include) inside this file so
+ * they are properly detected when drupal_alter() is invoked.
  */
 bootstrap_include('bootstrap', 'includes/alter.inc');

@@ -154,4 +154,4 @@ base theme:
 {.table.table-striped}
 
 [Drupal Bootstrap]: https://www.drupal.org/project/bootstrap
-[Bootstrap Framework]: https://getbootstrap.com/docs/3.3/
+[Bootstrap Framework]: http://getbootstrap.com

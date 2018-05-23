@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "picture" theme hook [pre]process functions.

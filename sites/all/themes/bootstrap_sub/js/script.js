@@ -14,7 +14,7 @@
     $(".view-taxonomy-term .views-row .views-field-body").matchHeight();
     $(".field-name-field-gallery-image .field-item img").matchHeight();
     if($('div.form-item[class*="window"]').length != 0){
-      $('<div class="product-windows"><h3>Windows:</h3><select name="windows-seletctor" class="form-control form-select ajax-processed"><option selected="selected">No Windows</option></select></div>').insertBefore('.commerce-add-to-cart .shipping');
+      $('<div class="product-windows"><h3>Additional Windows:</h3><select name="windows-seletctor" class="form-control form-select ajax-processed"><option selected="selected">No Additional Windows</option></select></div>').insertBefore('.commerce-add-to-cart .shipping');
     }
     $('div.form-item[class*="window"]').each(function(e){
       $(this).hide();
@@ -44,7 +44,7 @@
     $('.form-item-attributes-field-product-colour .selected-colour').css('background', $('select[id*="edit-attributes-field-product-colour"] option:selected').val());
 
     if($('div.form-item[class*="window"]').length != 0){
-      $('<div class="product-windows"><h3>Windows:</h3><select name="windows-seletctor"><option selected="selected">No Windows</option></select></div>').insertBefore('.commerce-add-to-cart .shipping');
+      $('<div class="product-windows"><h3>Windows:</h3><select name="windows-seletctor"><option selected="selected">No Additional Windows</option></select></div>').insertBefore('.commerce-add-to-cart .shipping');
     }
     $('div.form-item[class*="window"]').each(function(e){
       $(this).hide();

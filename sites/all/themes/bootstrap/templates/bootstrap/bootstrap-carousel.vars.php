@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "bootstrap_carousel" theme hook [pre]process functions.
@@ -10,14 +9,11 @@
  *
  * See template for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see bootstrap-carousel.tpl.php
  *
  * @ingroup theme_preprocess
  */
-function bootstrap_preprocess_bootstrap_carousel(array &$variables) {
+function bootstrap_preprocess_bootstrap_carousel(&$variables) {
   $variables['attributes']['class'][] = 'carousel';
   $variables['attributes']['class'][] = 'slide';
   $variables['attributes']['data-ride'] = 'carousel';
@@ -46,14 +42,11 @@ function bootstrap_preprocess_bootstrap_carousel(array &$variables) {
  *
  * See template for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see bootstrap-carousel.tpl.php
  *
  * @ingroup theme_process
  */
-function bootstrap_process_bootstrap_carousel(array &$variables) {
+function bootstrap_process_bootstrap_carousel(&$variables) {
   $variables['target'] = '#' . $variables['attributes']['id'];
   $variables['attributes'] = drupal_attributes($variables['attributes']);
 

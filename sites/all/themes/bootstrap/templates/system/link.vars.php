@@ -10,21 +10,18 @@
  *
  * See theme function for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see bootstrap_process_link()
  * @see theme_link()
  *
  * @ingroup theme_preprocess
  */
-function bootstrap_preprocess_link(array &$variables) {
+function bootstrap_preprocess_link(&$variables) {
   // Fill in missing defaults not provided by drupal_common_theme().
   $variables['options'] += array(
     'attributes' => array(),
     'html' => FALSE,
   );
-
+  
   // Core is so backwards on this theme hook. It does not provide a proper
   // preprocess function or attributes array. Merge any passed attributes
   // (which take precedence over passed option attributes) into the options
@@ -50,15 +47,12 @@ function bootstrap_preprocess_link(array &$variables) {
  *
  * See theme function for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see bootstrap_preprocess_link()
  * @see theme_link()
  *
  * @ingroup theme_process
  */
-function bootstrap_process_link(array &$variables) {
+function bootstrap_process_link(&$variables) {
   // Render #icon and trim it (so it doesn't add underlines in whitespace).
   if (!empty($variables['icon']) && ($icon = trim(render($variables['icon'])))) {
     // Sanitize text, if necessary.

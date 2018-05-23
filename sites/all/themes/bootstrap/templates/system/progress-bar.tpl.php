@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Template implementation to display a progress bar.

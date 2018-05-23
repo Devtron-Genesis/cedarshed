@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_webform_element().

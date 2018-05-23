@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "menu_link" theme hook [pre]process functions.
@@ -9,9 +8,6 @@
  * Pre-processes variables for the "menu_link" theme hook.
  *
  * See theme function for list of available variables.
- *
- * @param array $variables
- *   An associative array of variables, passed by reference.
  *
  * @see bootstrap_menu_link()
  * @see theme_menu_link()

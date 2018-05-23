@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_image_widget().
@@ -8,7 +7,7 @@
 /**
  * Returns HTML for an image field widget.
  *
- * @param array $variables
+ * @param $variables
  *   An associative array containing:
  *   - element: A render element representing the image field widget.
  *
@@ -19,7 +18,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_image_widget(array $variables) {
+function bootstrap_image_widget($variables) {
   $element = $variables['element'];
   $output = '';
   $output .= '<div class="image-widget form-managed-file clearfix">';

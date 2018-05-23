@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_status_messages().
@@ -24,7 +23,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_status_messages(array $variables) {
+function bootstrap_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
 
@@ -57,7 +56,7 @@ function bootstrap_status_messages(array $variables) {
 
   foreach ($message_list as $type => $messages) {
     $class = (isset($status_class[$type])) ? ' alert-' . $status_class[$type] : '';
-    $output .= "<div class=\"alert alert-block alert-dismissible$class messages $type\">\n";
+    $output .= "<div class=\"alert alert-block$class messages $type\">\n";
     $output .= "  <a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a>\n";
 
     if (!empty($status_heading[$type])) {
@@ -72,7 +71,7 @@ function bootstrap_status_messages(array $variables) {
       $output .= " </ul>\n";
     }
     else {
-      $output .= filter_xss_admin(reset($messages));
+      $output .= filter_xss_admin($messages[0]);
     }
 
     $output .= "</div>\n";

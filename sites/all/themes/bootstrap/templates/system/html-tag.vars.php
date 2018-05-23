@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "html_tag" theme hook [pre]process functions.
@@ -10,14 +9,11 @@
  *
  * See theme function for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see theme_html_tag()
  *
  * @ingroup theme_process
  */
-function bootstrap_process_html_tag(array &$variables) {
+function bootstrap_process_html_tag(&$variables) {
   // Reference the element and tag name for easier coding below.
   $element = &$variables['element'];
   $tag = $element['#tag'];
@@ -25,7 +21,7 @@ function bootstrap_process_html_tag(array &$variables) {
     // Remove default "type" attribute. Leave others unaffected as it may be
     // needed and used for other purposes.
     // @see http://stackoverflow.com/a/5265361/1226717
-    // @see https://www.drupal.org/node/2201779
+    // @see https://drupal.org/node/2201779
     $types = array(
       // @see http://www.w3.org/TR/html5/document-metadata.html#attr-style-type
       'style' => 'text/css',

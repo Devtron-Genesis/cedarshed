@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_file_widget().
@@ -19,7 +18,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_file_widget(array $variables) {
+function bootstrap_file_widget($variables) {
   $output = '';
   $element = $variables['element'];
   $element['upload_button']['#attributes']['class'][] = 'btn-primary';

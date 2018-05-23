@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_date().
@@ -21,7 +20,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_date(array $variables) {
+function bootstrap_date($variables) {
   $element = $variables['element'];
 
   $attributes = array();

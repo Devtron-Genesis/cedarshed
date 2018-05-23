@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_form_element_label().
@@ -33,7 +32,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_form_element_label(array &$variables) {
+function bootstrap_form_element_label(&$variables) {
   $element = $variables['element'];
 
   // Extract variables.
@@ -42,8 +41,7 @@ function bootstrap_form_element_label(array &$variables) {
   $title = !empty($element['#title']) ? filter_xss_admin($element['#title']) : '';
 
   // Only show the required marker if there is an actual title to display.
-  $marker = array('#theme' => 'form_required_marker', '#element' => $element);
-  if ($title && $required = !empty($element['#required']) ? drupal_render($marker) : '') {
+  if ($title && $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '') {
     $title .= ' ' . $required;
   }
 

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "admin_menu_links" theme hook [pre]process functions.
@@ -23,7 +22,7 @@
  *
  * @ingroup theme_preprocess
  */
-function bootstrap_preprocess_admin_menu_links(array &$variables) {
+function bootstrap_preprocess_admin_menu_links(&$variables) {
   $elements = &$variables['elements'];
   foreach (element_children($elements) as $child) {
     $elements[$child]['#bootstrap_ignore_pre_render'] = TRUE;

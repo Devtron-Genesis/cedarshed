@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for "book_navigation" theme hook [pre]process functions.
@@ -10,14 +9,11 @@
  *
  * See template for list of available variables.
  *
- * @param array $variables
- *   An associative array of variables, passed by reference.
- *
  * @see book-navigation.tpl.php
  *
  * @ingroup theme_preprocess
  */
-function bootstrap_preprocess_book_navigation(array &$variables) {
+function bootstrap_preprocess_book_navigation(&$variables) {
   $variables['tree'] = _bootstrap_book_children($variables['book_link']);
 }
 
@@ -30,7 +26,7 @@ function bootstrap_preprocess_book_navigation(array &$variables) {
  * @return string
  *   HTML for the links to the child pages of the current page.
  */
-function _bootstrap_book_children(array $book_link) {
+function _bootstrap_book_children($book_link) {
   // Rebuild entire menu tree for the book.
   $tree = menu_build_tree($book_link['menu_name']);
   $tree = menu_tree_output($tree);

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Stub file for bootstrap_file_widget_multiple().
@@ -19,7 +18,7 @@
  *
  * @ingroup theme_functions
  */
-function bootstrap_file_widget_multiple(array $variables) {
+function bootstrap_file_widget_multiple($variables) {
   $element = $variables['element'];
 
   // Special ID and classes for draggable tables.
